@@ -18,4 +18,7 @@ public interface ITestPropertiesConfig extends Config {
 
     @Config.Key("isRemote")
     Boolean isRemote();
+
+    @Config.Key("LocalOSWindows7")
+    Boolean LocalOSWindows7();
 }

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -20,12 +19,12 @@ public class BaseTestSettings {
 
     protected WebDriver driver;
     protected Actions actions;
-//    protected JavascriptExecutor js;
+    //    protected JavascriptExecutor js;
     protected WebDriverWait wait5sec;
 
     @BeforeEach
     void setup() {
-        if (!config.isRemote()) {
+        if (config.LocalOSWindows7()) {
             System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         }
 //        ChromeOptions options = new ChromeOptions();
