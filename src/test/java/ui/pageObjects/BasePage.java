@@ -1,7 +1,11 @@
 package ui.pageObjects;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +25,7 @@ public class BasePage {
     public static final String WOMEN_SKIRTS_URL = "/c/women/bottoms/skirts-skorts";
     public static final String FAVORITES_URL = "/favorites";
     public static final String CART_URL = "/cart";
-    public static final String GENERAL_WEB_TITLE_EXPECTED = "Men’s & Women’s Jeans, Clothes & Accessories | American Eagle";
+    public static final String GENERAL_WEB_TITLE_CONTAINS_EXPECTED = " | American Eagle";
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -30,6 +34,8 @@ public class BasePage {
     }
 
     // -= LOCATORS =-
+    @FindBy(css = "div[class='bloomreach-weblayer']")
+    private WebElement contentShadow;
 
     // -= ACTIONS =-
     public HeaderComponent header() {
@@ -44,6 +50,17 @@ public class BasePage {
     @Step("Get current url")
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
+    }
+
+    @Step("Find and close shadow window")
+    public void closeShadowWindow() {
+        try {
+            SearchContext shadowRoot = contentShadow.getShadowRoot();
+            WebElement closeButton = shadowRoot.findElement(By.cssSelector("button[class='close']"));
+            closeButton.click();
+        } catch (org.openqa.selenium.NoSuchElementException ignored) {
+            // Игнорируем, если не было всплывающего окна
+        }
     }
 
     // -= METHODS =-

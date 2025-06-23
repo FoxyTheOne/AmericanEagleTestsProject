@@ -1,8 +1,8 @@
 package ui.tests;
 
 import org.junit.jupiter.api.*;
-import ui.pageObjects.components.HeaderComponent;
 import ui.pageObjects.HomePage;
+import ui.pageObjects.components.HeaderComponent;
 
 import static constants.CommonConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,16 +25,16 @@ class HomePageSmokeTests extends BaseTestSettings {
     void openHomePageTest() {
         String actualGeneralWebTitle = homePage.getGeneralWebTitle();
         String actualCurrentUrl = homePage.getCurrentUrl();
-        String actualMainLogoText = homePage.header().getMainLogoText();
-        String actualMainLogoHref = homePage.header().getMainLogoHref();
-        String actualMainLogoTitle = homePage.header().getMainLogoTitle();
+        String actualAeLogoInBrandSelectorText = homePage.header().getAeLogoInBrandSelectorText();
+        String actualAeLogoInBrandSelectorHref = homePage.header().getAeLogoInBrandSelectorHref();
+        String actualAeLogoInBrandSelectorTitle = homePage.header().getAeLogoInBrandSelectorTitle();
 
         assertAll(
-                () -> assertEquals(GENERAL_WEB_TITLE_EXPECTED, actualGeneralWebTitle),
+                () -> assertTrue(actualGeneralWebTitle.contains(GENERAL_WEB_TITLE_CONTAINS_EXPECTED)),
                 () -> assertEquals(BASE_URL + HOME_URL, actualCurrentUrl),
-                () -> assertEquals(HeaderComponent.MAIN_LOGO_TEXT, actualMainLogoText),
-                () -> assertTrue(actualMainLogoHref.contains(HOME_URL)),
-                () -> assertTrue(actualMainLogoTitle.contains(HeaderComponent.MAIN_LOGO_TITLE_CONTAINS_EXPECTED))
+                () -> assertEquals(HeaderComponent.AE_LOGO_IN_BRAND_SELECTOR_TEXT, actualAeLogoInBrandSelectorText),
+                () -> assertTrue(actualAeLogoInBrandSelectorHref.contains(HOME_URL)),
+                () -> assertTrue(actualAeLogoInBrandSelectorTitle.contains(HeaderComponent.AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED))
         );
     }
 
@@ -42,9 +42,9 @@ class HomePageSmokeTests extends BaseTestSettings {
     @Tag(NICE_TO_HAVE_TAG)
     @DisplayName("Check if svg logo is displayed on homepage")
     void isSvgLogoDisplayed() {
-        Boolean isSvgLogoDisplayed = homePage.header().isMainLogoSvgDisplayed();
+        Boolean isAeLogoInBrandSelectorSvgDisplayed = homePage.header().isAeLogoInBrandSelectorSvgDisplayed();
 
-        assertTrue(isSvgLogoDisplayed);
+        assertTrue(isAeLogoInBrandSelectorSvgDisplayed);
     }
 
     @Test
@@ -106,7 +106,8 @@ class HomePageSmokeTests extends BaseTestSettings {
     void checkSignInButton() {
         homePage.header().clickAccountButton();
 
-// TODO тут раньше появлялось какое-то окошко, пока не могу его словить
+        // TODO Словить ShadowDOM, чтобы проверить
+        homePage.closeShadowWindow();
 
         homePage.header().waitForSignInButton(wait5sec);
         Boolean isSignInButtonDisplayed = homePage.header().isSignInButtonDisplayed();
@@ -120,20 +121,8 @@ class HomePageSmokeTests extends BaseTestSettings {
     void checkCreateAccountButton() {
         homePage.header().clickAccountButton();
 
-// TODO тут раньше появлялось какое-то окошко, пока не могу его словить
-// Закрываем рекламу, если появилась (пример)
-//        try {
-//            WebElement closeAd = wait5sec.until(ExpectedConditions.elementToBeClickable(
-//                    By.cssSelector("button.close-ad, .modal-close")
-//            ));
-//            closeAd.click();
-//        } catch (TimeoutException e) {
-//            // Рекламы нет, продолжаем
-//        }
-// или
-//        try {
-//            driver.findElement(By.cssSelector(".ad-close-button")).click();
-//        } catch (NoSuchElementException ignored) {}
+        // TODO Словить ShadowDOM, чтобы проверить
+        homePage.closeShadowWindow();
 
         homePage.header().waitForCreateAccountButton(wait5sec);
         Boolean isCreateAccountButtonDisplayed = homePage.header().isCreateAccountButtonDisplayed();

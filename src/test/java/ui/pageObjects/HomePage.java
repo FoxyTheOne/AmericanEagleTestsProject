@@ -18,17 +18,4 @@ public class HomePage extends BasePage {
     }
 
     // -= METHODS =-
-// Methods -> for ex open another Page Object
-//    // Чтобы перейти на Web form, нам нужно нажать ссылку на главной странице, поэтому переход туда описываем здесь
-//    @Step("Open Web form page")
-//    public WebFormPage openWebFormPage() {
-//        driver.findElement(By.linkText("Web form")).click();
-//        return new WebFormPage(driver);
-//    }
-//
-//    @Step("Open Navigation page")
-//    public NavigationPage openNavigationPage() {
-//        driver.findElement(By.linkText("Navigation")).click();
-//        return new NavigationPage(driver);
-//    }
 }

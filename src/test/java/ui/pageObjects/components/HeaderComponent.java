@@ -9,14 +9,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ui.pageObjects.WomenSkirtsSkortsPage;
 
 import java.util.Objects;
 
 public class HeaderComponent {
     WebDriver driver;
 
-    public static final String MAIN_LOGO_TITLE_CONTAINS_EXPECTED = "American Eagle Outfitters";
-    public static final String MAIN_LOGO_TEXT = "Go to aeo homepage";
+    public static final String AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED = "American Eagle Outfitters";
+    public static final String AE_LOGO_IN_BRAND_SELECTOR_TEXT = "Go to aeo homepage";
     public static final String SKIRTS_LINK_TEXT_CONTENT = "Skirts & Skorts";
 
     public HeaderComponent(WebDriver driver) {
@@ -26,7 +27,7 @@ public class HeaderComponent {
 
     // -= LOCATORS =-
     @FindBy(css = "a[data-testid='aeo-logo']")
-    private WebElement mainLogo;
+    private WebElement AeLogoInBrandSelector;
 
     @FindBy(xpath = "//a[text()='Women']")
     private WebElement womenMenuElement;
@@ -70,24 +71,24 @@ public class HeaderComponent {
 
     // -= ACTIONS =-
     @Step("Get main logo text")
-    public String getMainLogoText() {
-        return mainLogo.getText();
+    public String getAeLogoInBrandSelectorText() {
+        return AeLogoInBrandSelector.getText();
     }
 
     @Step("Get main logo link")
-    public String getMainLogoHref() {
-        return mainLogo.getDomProperty("href");
+    public String getAeLogoInBrandSelectorHref() {
+        return AeLogoInBrandSelector.getDomProperty("href");
     }
 
     @Step("Get main logo title")
-    public String getMainLogoTitle() {
-        return mainLogo.getDomProperty("title");
+    public String getAeLogoInBrandSelectorTitle() {
+        return AeLogoInBrandSelector.getDomProperty("title");
     }
 
     @Step("Check if main logo svg is displayed")
-    public Boolean isMainLogoSvgDisplayed() {
+    public Boolean isAeLogoInBrandSelectorSvgDisplayed() {
         // SVG логотип внутри элемента:
-        WebElement svg = mainLogo.findElement(By.cssSelector("svg.aeo-icon-brand-max-aeo"));
+        WebElement svg = AeLogoInBrandSelector.findElement(By.cssSelector("svg.aeo-icon-brand-max-aeo"));
         return svg.isDisplayed();
     }
 
@@ -192,4 +193,9 @@ public class HeaderComponent {
     }
 
     // -= METHODS =-
+    @Step("Open women skirts & skorts page")
+    public WomenSkirtsSkortsPage openWomenSkirtsSkortsPage() {
+        skirtsLinkElement.click();
+        return new WomenSkirtsSkortsPage(driver);
+    }
 }
