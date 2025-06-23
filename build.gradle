@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id("io.qameta.allure") version "2.12.0"
+}
+
+group = 'org.mycompany'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Selenium java
+    implementation 'org.seleniumhq.selenium:selenium-java:4.29.0'
+    // SLF4J - 1
+    implementation 'org.slf4j:slf4j-api:2.0.17'
+    // SLF4J - 2 (Logback как реализация)
+    implementation 'ch.qos.logback:logback-classic:1.5.13'
+    // Owner for property files
+    testImplementation 'org.aeonbits.owner:owner:1.0.12'
+    // AssertJ ( assertThat etc )
+    implementation 'org.assertj:assertj-core:3.27.3'
+    // Allure-junit5 + добавить плагин
+    implementation 'io.qameta.allure:allure-junit5:2.29.1'
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver - без этого не работала модель POM
+    runtimeOnly 'org.aspectj:aspectjweaver:1.9.23'
+    // Factory method pattern
+    implementation 'org.aeonbits.owner:owner:1.0.12'
+    // Fluent POM (Builder pattern, Lombok, Fluent) - 4 строчки
+    compileOnly("org.projectlombok:lombok:1.18.38")
+    annotationProcessor("org.projectlombok:lombok:1.18.38")
+    testCompileOnly("org.projectlombok:lombok:1.18.38")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+}
