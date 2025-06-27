@@ -16,9 +16,12 @@ public interface ITestPropertiesConfig extends Config {
     @Key("remoteUrl")
     String remoteUrl();
 
-    @Config.Key("isRemote")
-    Boolean isRemote();
-
     @Config.Key("LocalOSWindows7")
     Boolean LocalOSWindows7();
+
+    @Key("baseUrl")
+    String getApiBaseUrl();
+
+    @Key("guest.header.auth")
+    String getGuestHeaderAuth();
 }

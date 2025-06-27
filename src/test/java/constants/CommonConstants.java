@@ -19,14 +19,6 @@ public class CommonConstants {
     public static final String IMPORTANT_TAG = "Important";
     public static final String NICE_TO_HAVE_TAG = "Nice";
 
-    // Lifecycle
-    public static final String CREATE_TAG = "Create";
-    public static final String GET_TAG = "Get";
-    public static final String UPDATE_TAG = "Update";
-    public static final String DELETE_TAG = "Delete";
-    public static final String UPLOAD_TAG = "Upload";
-    public static final String DOWNLOAD_TAG = "Download";
-
     // Positive-negative
     public static final String POSITIVE_TAG = "Positive";
     public static final String NEGATIVE_TAG = "Negative";
