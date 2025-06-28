@@ -1,11 +1,11 @@
 package api.controllers.cartController;
 
+import api.models.ApiHttpResponse;
 import api.models.cartModels.CartResponse;
-import io.restassured.response.Response;
 
 public interface ICartController {
     // CREATE, ADD - post
-    Response addItemToCart(String skuId, int quantity);
+    ApiHttpResponse addItemsToCart(String skuId, int quantity);
 
     // GET - get
     CartResponse getBag();
@@ -13,6 +13,7 @@ public interface ICartController {
     // FULL UPDATE - put
 
     // PART UPDATE - patch
+    ApiHttpResponse editItemsInCart(String skuId, int quantity, String itemId);
 
     // DELETE - delete
 }
