@@ -9,7 +9,6 @@ import config.ITestPropertiesConfig;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
 import io.restassured.specification.RequestSpecification;
 import org.aeonbits.owner.ConfigFactory;
@@ -26,13 +25,14 @@ import static io.restassured.http.ContentType.JSON;
 public class CartController implements ICartController {
     //    RequestSpecification requestSpecification;
     private static final String ITEMS_ENDPOINT = "/ugp-api/bag/v1/items";
+    private static final String PRODUCT_SIZES_ENDPOINT = "/ugp-api/catalog/v1/product/sizes";
     private static final String BAG_ENDPOINT = "/ugp-api/bag/v1";
 
     ITestPropertiesConfig configProperties = ConfigFactory.create(ITestPropertiesConfig.class, System.getProperties());
 
     RequestSpecification requestSpecification = given();
 
-    // При инициализации контроллера устанавливаем нужны нам token
+    // При инициализации контроллера устанавливаем нужный нам token
     public CartController() {
         RestAssured.defaultParser = Parser.JSON;
         requestSpecification.accept(JSON);
@@ -45,6 +45,7 @@ public class CartController implements ICartController {
         requestSpecification.filter(new AllureRestAssured());
     }
 
+    // CREATE, ADD - post
     @Step("Add item to bag")
     public ApiHttpResponse addItemsToCart(String skuId, int quantity) {
         // Создаём объект товара
@@ -58,18 +59,7 @@ public class CartController implements ICartController {
                 .then());
     }
 
-//    @Step("Add item to bag")
-//    public Response addItemToCart(String skuId, int quantity) {
-//        AddItemRequest.Item item = new AddItemRequest.Item(skuId, quantity);
-//        AddItemRequest request = new AddItemRequest(List.of(item));
-//
-//        return given(requestSpecification)
-//                .body(request)
-//                .when()
-//                .post(ITEMS_ENDPOINT)
-//                .andReturn();
-//    }
-
+    // GET - get
     @Step("Get bag")
     public CartResponse getBag() {
         return given(requestSpecification)
@@ -82,6 +72,23 @@ public class CartController implements ICartController {
                 .as(CartResponse.class);
     }
 
+    @Step("Open quick shop by id")
+    public ApiHttpResponse openQuickShopById(String productId) {
+        return new ApiHttpResponse(given(requestSpecification)
+                .when().get(PRODUCT_SIZES_ENDPOINT + "?productIds=" + productId)
+                .then());
+    }
+
+    @Step("Open cart inventory")
+    public ApiHttpResponse getCartInventory() {
+        return new ApiHttpResponse(given(requestSpecification)
+                .when().get(BAG_ENDPOINT + "?couponErrorBehavior=cart&inventoryCheck=true")
+                .then());
+    }
+
+    // FULL UPDATE - put
+
+    // PART UPDATE - patch
     @Step("Edit item in bag")
     public ApiHttpResponse editItemsInCart(String skuId, int quantity, String itemId) {
         // Создаём объект товара
@@ -92,6 +99,14 @@ public class CartController implements ICartController {
         requestSpecification.body(request);
         return new ApiHttpResponse(given(requestSpecification)
                 .when().patch(ITEMS_ENDPOINT)
+                .then());
+    }
+
+    // DELETE - delete
+    @Step("Delete item in bag")
+    public ApiHttpResponse deleteItemsInCart(String itemId) {
+        return new ApiHttpResponse(given(requestSpecification)
+                .when().delete(ITEMS_ENDPOINT + "?itemIds=" + itemId)
                 .then());
     }
 }

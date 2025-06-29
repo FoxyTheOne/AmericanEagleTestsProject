@@ -15,9 +15,9 @@ public class CommonConstants {
     public static final String UI_TAG = "UI";
 
     // Importance level
-    public static final String CRUCIAL_TAG = "Crucial";
-    public static final String IMPORTANT_TAG = "Important";
-    public static final String NICE_TO_HAVE_TAG = "Nice";
+    public static final String PO_CRUCIAL_TAG = "PO";
+    public static final String P1_IMPORTANT_TAG = "P1";
+    public static final String P2_NICE_TO_HAVE_TAG = "P2";
 
     // Positive-negative
     public static final String POSITIVE_TAG = "Positive";

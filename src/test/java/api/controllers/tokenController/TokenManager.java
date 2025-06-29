@@ -22,14 +22,14 @@ public class TokenManager {
         UserRole role = currentRole.get();
         if (role == null) {
             throw new IllegalStateException("""
-                🧪 [TokenManager Error] User role was not set.
-                
-                💡 Make sure you added @ExtendWith(GuestTokenExtension.class) or @ExtendWith(AuthTokenExtension.class).
-                
-                🔧 Examples:
-                   @ExtendWith(GuestTokenExtension.class)
-                   class MyTest { ... }
-                """);
+                    🧪 [TokenManager Error] User role was not set.
+                    
+                    💡 Make sure you added @ExtendWith(GuestTokenExtension.class) or @ExtendWith(AuthTokenExtension.class).
+                    
+                    🔧 Examples:
+                       @ExtendWith(GuestTokenExtension.class)
+                       class MyTest { ... }
+                    """);
         }
         return getToken(role);
     }

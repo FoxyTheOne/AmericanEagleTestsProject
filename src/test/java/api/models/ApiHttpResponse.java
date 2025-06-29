@@ -1,5 +1,7 @@
 package api.models;
 
+import api.models.cartModels.InventoryCheckResponse;
+import api.models.cartModels.ProductSizesResponse;
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 
@@ -16,7 +18,8 @@ public class ApiHttpResponse {
     @Step("Check status code")
     public ApiHttpResponse statusCodeIs(int status) {
         this.response.statusCode(status)
-                .log().body();
+//                .log().body()
+        ;
         return this;
     }
 
@@ -76,6 +79,17 @@ public class ApiHttpResponse {
         String value = this.response.extract().jsonPath().getString(fieldPath);
         assertThat(value).isNotNull();
         return value;
+    }
+
+    // OTHER finalizing
+    @Step("Get product sizes response")
+    public ProductSizesResponse getProductSizesResponse() {
+        return response.extract().as(ProductSizesResponse.class);
+    }
+
+    @Step("Get product sizes response")
+    public InventoryCheckResponse getInventoryCheckResponse() {
+        return response.extract().as(InventoryCheckResponse.class);
     }
 
     // Override

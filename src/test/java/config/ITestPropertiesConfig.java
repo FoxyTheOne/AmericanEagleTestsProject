@@ -24,4 +24,10 @@ public interface ITestPropertiesConfig extends Config {
 
     @Key("guest.header.auth")
     String getGuestHeaderAuth();
+
+    @Key("email")
+    String getEmail();
+
+    @Key("password")
+    String getPassword();
 }

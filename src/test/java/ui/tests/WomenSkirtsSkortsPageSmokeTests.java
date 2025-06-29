@@ -21,7 +21,7 @@ class WomenSkirtsSkortsPageSmokeTests extends BaseTestSettings {
     }
 
     @Test
-    @Tag(CRUCIAL_TAG)
+    @Tag(PO_CRUCIAL_TAG)
     @DisplayName("Open women skirts & skorts page from header on homepage and check url and titles")
     void openWomenSkirtsSkortsPageTest() {
         // Открываем выпадающее меню
