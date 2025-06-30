@@ -2,7 +2,7 @@ package api.tests.cart;
 
 import api.models.cartModels.CartResponse;
 import api.models.cartModels.ProductSizesResponse;
-import api.tests.extensions.GuestTokenExtension;
+import api.tests.extensions.RoleBasedExtension;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tags({@Tag(API_TAG), @Tag(EXTENDED_TAG)})
-@ExtendWith(GuestTokenExtension.class)
+@ExtendWith(RoleBasedExtension.class)
 class CartApiExtendedTests extends BaseCartApiTests {
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})

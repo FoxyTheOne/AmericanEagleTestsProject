@@ -25,9 +25,17 @@ public interface ITestPropertiesConfig extends Config {
     @Key("guest.header.auth")
     String getGuestHeaderAuth();
 
-    @Key("email")
-    String getEmail();
+    @Key("auth.header.auth")
+    String getAuthHeaderAuth();
 
-    @Key("password")
-    String getPassword();
+    @Key("auth.email")
+    String getAuthEmail();
+
+    @Key("auth.password")
+    String getAuthPassword();
+
+    // Добавим метод для определения режима запуска
+    @Key("test.mode")
+    @DefaultValue("GUEST")
+    String getTestMode();
 }

@@ -50,3 +50,11 @@ test {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 }
+
+tasks.register('apiTests', Test) {
+    useJUnitPlatform() {
+        includeTags 'API'
+        excludeTags 'UI'
+    }
+    systemProperties(System.getProperties())
+}

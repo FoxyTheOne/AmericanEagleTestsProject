@@ -1,6 +1,6 @@
 package api.tests.cart;
 
-import api.tests.extensions.GuestTokenExtension;
+import api.tests.extensions.RoleBasedExtension;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import static constants.CommonConstants.*;
 
 @Tags({@Tag(API_TAG), @Tag(SMOKE_TAG)})
-@ExtendWith(GuestTokenExtension.class)
+@ExtendWith(RoleBasedExtension.class)
 class CartApiSmokeTests extends BaseCartApiTests {
     // CREATE, ADD - post
     @Test
