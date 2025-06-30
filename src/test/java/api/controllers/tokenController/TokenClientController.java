@@ -32,7 +32,7 @@ public class TokenClientController {
                 .filter(new AllureRestAssured());
     }
 
-    // TODO Access Denied. You don't have permission to access "http://www.ae.com/ugp-api/auth/oauth/v4/token" on this server
+// TODO Access Denied. You don't have permission to access "http://www.ae.com/ugp-api/auth/oauth/v4/token" on this server
 //    Ошибка "Reference #18.8e5e6cc1.1751287014.2ab4eff7" указывает на срабатывание защиты Akamai
 //    Сервер интерпретирует ваш запрос как бота
 //    Необходимо максимально точно эмулировать браузерный запрос

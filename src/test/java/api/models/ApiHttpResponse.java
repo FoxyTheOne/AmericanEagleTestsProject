@@ -17,9 +17,8 @@ public class ApiHttpResponse {
     // STATUS CODE intermediate
     @Step("Check status code")
     public ApiHttpResponse statusCodeIs(int status) {
-        this.response.statusCode(status)
-//                .log().body()
-        ;
+        this.response.statusCode(status);
+//                .log().body();
         return this;
     }
 

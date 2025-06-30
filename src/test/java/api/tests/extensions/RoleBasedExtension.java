@@ -8,8 +8,7 @@ import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 /**
- * JUnit-расширение - RoleBasedExtension и заготовка для будущего AuthTokenExtension
- * В beforeAll() устанавливает роль (TokenManager.setCurrentRole(...)) и инициализируется токен (TokenManager.getToken())
+ * JUnit-расширение - RoleBasedExtension. В beforeAll() устанавливает роль (TokenManager.setCurrentRole(...)) и инициализируется токен (TokenManager.getToken())
  */
 public class RoleBasedExtension implements BeforeAllCallback {
     @Override
