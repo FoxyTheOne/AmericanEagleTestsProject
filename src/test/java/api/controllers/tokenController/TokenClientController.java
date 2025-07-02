@@ -32,10 +32,7 @@ public class TokenClientController {
                 .filter(new AllureRestAssured());
     }
 
-// TODO Access Denied. You don't have permission to access "http://www.ae.com/ugp-api/auth/oauth/v4/token" on this server
-//    Ошибка "Reference #18.8e5e6cc1.1751287014.2ab4eff7" указывает на срабатывание защиты Akamai
-//    Сервер интерпретирует ваш запрос как бота
-//    Необходимо максимально точно эмулировать браузерный запрос
+    // TODO В связи с защитой Akamai метод не работает и не используется в данном проекте
     public static RequestSpecification authAuthSpec() {
         return given()
                 .baseUri(configProperties.getApiBaseUrl())
@@ -49,15 +46,15 @@ public class TokenClientController {
 
                 .header("origin", "https://www.ae.com")
                 .header("referer", "https://www.ae.com/us/en")
-                .header("sec-ch-ua", "\"Not_A Brand\";v=\"99\", \"Google Chrome\";v=\"109\", \"Chromium\";v=\"109\"")
-                .header("sec-ch-ua-mobile", "?0")
-                .header("sec-ch-ua-platform", "\"Windows\"")
-                .header("sec-fetch-dest", "empty")
-                .header("sec-fetch-mode", "cors")
-                .header("sec-fetch-site", "same-origin")
+//                .header("sec-ch-ua", "\"Not_A Brand\";v=\"99\", \"Google Chrome\";v=\"109\", \"Chromium\";v=\"109\"")
+//                .header("sec-ch-ua-mobile", "?0")
+//                .header("sec-ch-ua-platform", "\"Windows\"")
+//                .header("sec-fetch-dest", "empty")
+//                .header("sec-fetch-mode", "cors")
+//                .header("sec-fetch-site", "same-origin")
                 .header("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36")
-                .cookie("brand", "aeo")
-                .cookie("aeoStyliticsSegment", "true")
+                .cookie("brand", "aeo") // Куки нужны, но другие
+
                 .filter(new AllureRestAssured());
     }
 
@@ -74,6 +71,7 @@ public class TokenClientController {
         return response.jsonPath().getString("access_token");
     }
 
+    // TODO В связи с защитой Akamai метод не работает и не используется в данном проекте
     @Step("Get auth token")
     public static String getAuthToken() {
         String email = configProperties.getAuthEmail();

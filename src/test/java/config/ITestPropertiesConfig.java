@@ -33,9 +33,4 @@ public interface ITestPropertiesConfig extends Config {
 
     @Key("auth.password")
     String getAuthPassword();
-
-    // Метод для определения режима запуска
-    @Key("test.mode")
-    @DefaultValue("GUEST")
-    String getTestMode();
 }

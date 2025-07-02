@@ -1,6 +1,7 @@
 package api.tests.cart;
 
-import api.tests.extensions.RoleBasedExtension;
+import api.extensions.GuestTokenExtension;
+import constants.ApiConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
@@ -10,15 +11,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import static constants.CommonConstants.*;
 
 @Tags({@Tag(API_TAG), @Tag(SMOKE_TAG)})
-@ExtendWith(RoleBasedExtension.class)
+@ExtendWith(GuestTokenExtension.class)
 class CartApiSmokeTests extends BaseCartApiTests {
     // CREATE, ADD - post
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Smoke test: add items to cart")
     void addItemsToCartSmokeTest() {
-        cartController.addItemsToCart(TEST_SKU_ID, 1)
-                .statusCodeIs(202);
+        cartSteps.addItemsToCart(ApiConstants.MAN_CONVERSE.sku, 1);
     }
 
     // GET - get
@@ -26,25 +26,21 @@ class CartApiSmokeTests extends BaseCartApiTests {
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Smoke test: check the bag")
     void checkTheBagSmokeTest() {
-        cartController.getBag().getData();
+        cartSteps.getItemsInBagList();
     }
 
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
-    @DisplayName("Smoke test: open quick shop")
-    void openQuickShopSmokeTest() {
-        cartController.openQuickShopById(TEST_PRODUCT_ID_4)
-                .statusCodeIs(200)
-                .getProductSizesResponse();
+    @DisplayName("Smoke test: get product details by id")
+    void getProductDetailsByIdSmokeTest() {
+        cartController.getProductDetailsById(ApiConstants.MAN_JEANS.productId);
     }
 
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Smoke test: get cart inventory")
     void getCartInventorySmokeTest() {
-        cartController.getCartInventory()
-                .statusCodeIs(200)
-                .getInventoryCheckResponse();
+        cartController.getCartInventory();
     }
 
     // FULL UPDATE - put
@@ -54,16 +50,9 @@ class CartApiSmokeTests extends BaseCartApiTests {
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Smoke test: edit items in cart")
     void editItemsInCartSmokeTest() {
-        cartController.addItemsToCart(TEST_SKU_ID, 1)
-                .statusCodeIs(202);
-        String itemId = cartController.getBag()
-                .getData()
-                .getItems()
-                .get(0)
-                .getItemId();
-        cartController.editItemsInCart(TEST_SKU_ID, 2, itemId)
-                .statusCodeIs(202);
-
+        String itemId = cartSteps.addItemsToCart(ApiConstants.WOMAN_SKIRT.sku, 1)
+                .getIdOfTheFirstItemInBag();
+        cartSteps.editItemsInCart(ApiConstants.WOMAN_SKIRT.sku, 2, itemId);
     }
 
     // DELETE - delete
@@ -71,14 +60,8 @@ class CartApiSmokeTests extends BaseCartApiTests {
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Smoke test: delete item from cart")
     void deleteItemFromCartSmokeTest() {
-        cartController.addItemsToCart(TEST_SKU_ID_3, 1)
-                .statusCodeIs(202);
-        String itemId = cartController.getBag()
-                .getData()
-                .getItems()
-                .get(0)
-                .getItemId();
-        cartController.deleteItemsInCart(itemId)
-                .statusCodeIs(202);
+        String itemId = cartSteps.addItemsToCart(ApiConstants.WOMAN_SKIRT.sku, 1)
+                .getIdOfTheFirstItemInBag();
+        cartSteps.deleteItemsInCart(itemId);
     }
 }

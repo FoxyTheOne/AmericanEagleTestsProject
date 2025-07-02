@@ -2,9 +2,7 @@ package api.controllers.cartController;
 
 import api.controllers.tokenController.TokenManager;
 import api.models.ApiHttpResponse;
-import api.models.cartModels.AddItemRequest;
-import api.models.cartModels.CartResponse;
-import api.models.cartModels.EditItemRequest;
+import api.models.cartModels.*;
 import config.ITestPropertiesConfig;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
@@ -60,7 +58,7 @@ public class CartController implements ICartController {
     }
 
     // GET - get
-    @Step("Get bag")
+    @Step("Get bag and check status code")
     public CartResponse getBag() {
         return given(requestSpecification)
                 .when()
@@ -72,18 +70,26 @@ public class CartController implements ICartController {
                 .as(CartResponse.class);
     }
 
-    @Step("Open quick shop by id")
-    public ApiHttpResponse openQuickShopById(String productId) {
-        return new ApiHttpResponse(given(requestSpecification)
-                .when().get(PRODUCT_SIZES_ENDPOINT + "?productIds=" + productId)
-                .then());
+    @Step("Get product details by id and check status code")
+    public ProductSizesResponse getProductDetailsById(String productId) {
+        return given(requestSpecification)
+                .when()
+                .get(PRODUCT_SIZES_ENDPOINT + "?productIds=" + productId)
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(ProductSizesResponse.class);
     }
 
-    @Step("Open cart inventory")
-    public ApiHttpResponse getCartInventory() {
-        return new ApiHttpResponse(given(requestSpecification)
-                .when().get(BAG_ENDPOINT + "?couponErrorBehavior=cart&inventoryCheck=true")
-                .then());
+    @Step("Open cart inventory, get product details and check status code")
+    public InventoryCheckResponse getCartInventory() {
+        return given(requestSpecification)
+                .when()
+                .get(BAG_ENDPOINT + "?couponErrorBehavior=cart&inventoryCheck=true")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(InventoryCheckResponse.class);
     }
 
     // FULL UPDATE - put

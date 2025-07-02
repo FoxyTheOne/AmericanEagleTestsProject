@@ -182,7 +182,7 @@ public class InventoryCheckResponse {
                 public String productId;
                 public boolean onHold;
                 public String taxCode;
-                public List<ProductExcludedSite> productExcludedSites;
+                public List<String> productExcludedSites;
                 public List<String> skuExcludedSites;
                 public List<ProductClearanceSite> productClearanceSites;
                 public boolean productNonReturnable;
@@ -190,11 +190,6 @@ public class InventoryCheckResponse {
                 public boolean isProductHazmat;
                 public boolean isProductThirdParty;
                 public boolean isSkuOnDemand;
-
-                @JsonIgnoreProperties(ignoreUnknown = true)
-                @lombok.Data
-                public static class ProductExcludedSite {
-                }
 
                 @JsonIgnoreProperties(ignoreUnknown = true)
                 @lombok.Data

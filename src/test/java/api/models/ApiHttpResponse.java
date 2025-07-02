@@ -80,17 +80,6 @@ public class ApiHttpResponse {
         return value;
     }
 
-    // OTHER finalizing
-    @Step("Get product sizes response")
-    public ProductSizesResponse getProductSizesResponse() {
-        return response.extract().as(ProductSizesResponse.class);
-    }
-
-    @Step("Get product sizes response")
-    public InventoryCheckResponse getInventoryCheckResponse() {
-        return response.extract().as(InventoryCheckResponse.class);
-    }
-
     // Override
     @Override
     @Step("Return info about response")

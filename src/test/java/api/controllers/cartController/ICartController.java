@@ -2,6 +2,8 @@ package api.controllers.cartController;
 
 import api.models.ApiHttpResponse;
 import api.models.cartModels.CartResponse;
+import api.models.cartModels.InventoryCheckResponse;
+import api.models.cartModels.ProductSizesResponse;
 
 public interface ICartController {
     // CREATE, ADD - post
@@ -10,9 +12,9 @@ public interface ICartController {
     // GET - get
     CartResponse getBag();
 
-    ApiHttpResponse openQuickShopById(String productId);
+    ProductSizesResponse getProductDetailsById(String productId);
 
-    ApiHttpResponse getCartInventory();
+    InventoryCheckResponse getCartInventory();
 
     // FULL UPDATE - put
 
