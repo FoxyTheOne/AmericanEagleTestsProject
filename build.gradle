@@ -44,17 +44,30 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.32'
     testCompileOnly 'org.projectlombok:lombok:1.18.32'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+    // Java Faker
+    implementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
 test {
     useJUnitPlatform()
     systemProperties(System.getProperties())
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 tasks.register('apiTests', Test) {
     useJUnitPlatform() {
         includeTags 'API'
         excludeTags 'UI'
+    }
+    systemProperties(System.getProperties())
+}
+
+tasks.register('uiTests', Test) {
+    useJUnitPlatform() {
+        includeTags 'UI'
+        excludeTags 'API'
     }
     systemProperties(System.getProperties())
 }

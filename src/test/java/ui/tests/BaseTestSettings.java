@@ -27,9 +27,6 @@ public class BaseTestSettings {
         if (config.LocalOSWindows7()) {
             System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         }
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");  // Add headless mode
-//        driver = new ChromeDriver(options);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
@@ -40,6 +37,8 @@ public class BaseTestSettings {
 
     @AfterEach
     void tearDown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

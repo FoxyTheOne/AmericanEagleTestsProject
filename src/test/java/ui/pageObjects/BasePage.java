@@ -1,10 +1,7 @@
 package ui.pageObjects;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
@@ -58,7 +55,8 @@ public class BasePage {
             SearchContext shadowRoot = contentShadow.getShadowRoot();
             WebElement closeButton = shadowRoot.findElement(By.cssSelector("button[class='close']"));
             closeButton.click();
-        } catch (org.openqa.selenium.NoSuchElementException ignored) {
+            System.out.println("Shadow DOM closed");
+        } catch (org.openqa.selenium.NoSuchElementException | StaleElementReferenceException ignored) {
             // Игнорируем, если не было всплывающего окна
         }
     }

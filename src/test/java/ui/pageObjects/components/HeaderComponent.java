@@ -1,20 +1,21 @@
 package ui.pageObjects.components;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ui.pageObjects.CartPage;
+import ui.pageObjects.RegistrationPage;
 import ui.pageObjects.WomenSkirtsSkortsPage;
 
 import java.util.Objects;
 
 public class HeaderComponent {
     WebDriver driver;
+    LoginModalComponent loginModalComponent;
 
     public static final String AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED = "American Eagle Outfitters";
     public static final String AE_LOGO_IN_BRAND_SELECTOR_TEXT = "Go to aeo homepage";
@@ -23,6 +24,7 @@ public class HeaderComponent {
     public HeaderComponent(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        loginModalComponent = new LoginModalComponent(driver);
     }
 
     // -= LOCATORS =-
@@ -48,7 +50,7 @@ public class HeaderComponent {
     private WebElement signInButtonElement;
 
     @FindBy(xpath = "//a[@data-test='register-button']")
-    private WebElement createAccountButtonElement;
+    private WebElement registerButtonElement;
 
     //    @FindBy(xpath = "//a[@id='ember3']") // Поиском по ember3 находит разные, поэтому уточняю с помощью $
     @FindBy(css = "a[id$='ember3']")
@@ -69,7 +71,17 @@ public class HeaderComponent {
     @FindBy(xpath = "//a[@id='ember4']/span/span")
     private WebElement cartIndicatorElement;
 
+    @FindBy(css = "a.qa-tnav-bag-icon")
+    private WebElement cartIcon;
+
+    @FindBy(css = "div[class='bloomreach-weblayer']")
+    private WebElement contentShadow;
+
     // -= ACTIONS =-
+    public LoginModalComponent loginModalComponent() {
+        return loginModalComponent;
+    }
+
     @Step("Get main logo text")
     public String getAeLogoInBrandSelectorText() {
         return AeLogoInBrandSelector.getText();
@@ -152,14 +164,19 @@ public class HeaderComponent {
         return signInButtonElement.isDisplayed();
     }
 
+    @Step("Click sign in button")
+    public void clickSignInButton() {
+        signInButtonElement.click();
+    }
+
     @Step("Wait until create account button will appear")
     public void waitForCreateAccountButton(WebDriverWait wait) {
-        wait.until(ExpectedConditions.visibilityOf(createAccountButtonElement));
+        wait.until(ExpectedConditions.visibilityOf(registerButtonElement));
     }
 
     @Step("Check if create account button is displayed")
     public Boolean isCreateAccountButtonDisplayed() {
-        return createAccountButtonElement.isDisplayed();
+        return registerButtonElement.isDisplayed();
     }
 
     @Step("Get the link of favorites button")
@@ -192,10 +209,49 @@ public class HeaderComponent {
         return Integer.parseInt(cartIndicatorElement.getText());
     }
 
+    @Step("Find and close shadow window")
+    private void closeShadowWindow() {
+        try {
+            SearchContext shadowRoot = contentShadow.getShadowRoot();
+            WebElement closeButton = shadowRoot.findElement(By.cssSelector("button[class='close']"));
+            closeButton.click();
+            System.out.println("Shadow DOM closed");
+        } catch (org.openqa.selenium.NoSuchElementException | StaleElementReferenceException ignored) {
+            // Игнорируем, если не было всплывающего окна
+        }
+    }
+
     // -= METHODS =-
     @Step("Open women skirts & skorts page")
     public WomenSkirtsSkortsPage openWomenSkirtsSkortsPage() {
-        skirtsLinkElement.click();
+        try {
+            skirtsLinkElement.click();
+        } catch (TimeoutException e) {
+            closeShadowWindow();
+            skirtsLinkElement.click();
+        }
         return new WomenSkirtsSkortsPage(driver);
+    }
+
+    @Step("Open registration page")
+    public RegistrationPage openRegistrationPage() {
+        try {
+            registerButtonElement.click();
+        } catch (TimeoutException e) {
+            closeShadowWindow();
+            registerButtonElement.click();
+        }
+        return new RegistrationPage(driver);
+    }
+
+    @Step("Open cart page")
+    public CartPage openCartPage() {
+        try {
+            cartIcon.click();
+        } catch (TimeoutException e) {
+            closeShadowWindow();
+            cartIcon.click();
+        }
+        return new CartPage(driver);
     }
 }

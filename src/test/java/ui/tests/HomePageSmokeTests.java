@@ -105,8 +105,6 @@ class HomePageSmokeTests extends BaseTestSettings {
     @DisplayName("Check sign in button on homepage")
     void checkSignInButton() {
         homePage.header().clickAccountButton();
-
-        // TODO Словить ShadowDOM, чтобы проверить
         homePage.closeShadowWindow();
 
         homePage.header().waitForSignInButton(wait5sec);
@@ -120,8 +118,6 @@ class HomePageSmokeTests extends BaseTestSettings {
     @DisplayName("Check create account button on homepage")
     void checkCreateAccountButton() {
         homePage.header().clickAccountButton();
-
-        // TODO Словить ShadowDOM, чтобы проверить
         homePage.closeShadowWindow();
 
         homePage.header().waitForCreateAccountButton(wait5sec);

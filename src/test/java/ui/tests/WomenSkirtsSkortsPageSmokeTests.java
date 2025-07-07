@@ -30,8 +30,6 @@ class WomenSkirtsSkortsPageSmokeTests extends BaseTestSettings {
 
         // Реализуем переход между страницами:
         WomenSkirtsSkortsPage womenSkirtsSkortsPage = homePage.header().openWomenSkirtsSkortsPage();
-
-        // TODO Словить ShadowDOM, чтобы проверить
         womenSkirtsSkortsPage.closeShadowWindow();
 
         String actualGeneralWebTitle = womenSkirtsSkortsPage.getGeneralWebTitle();
