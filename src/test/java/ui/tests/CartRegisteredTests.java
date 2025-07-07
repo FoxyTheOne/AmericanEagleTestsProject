@@ -4,7 +4,10 @@ import config.ITestPropertiesConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.*;
 
+import java.util.Objects;
+
 import static constants.CommonConstants.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * При запуске тестов в этом классе, запустятся тесты из класса CartGuestTests.
@@ -43,25 +46,31 @@ class CartRegisteredTests extends CartGuestTests {
 
 
         char[] userPasswordCharArray = USER_PASSWORD.toCharArray();
-        // TODO Иногда не входит в аккаунт:
+        // TODO Не входит в аккаунт:
         // We've encountered an unexpected error on our end. Please try again later.
         homePage.header().loginModalComponent().login(wait5sec, actions, USER_EMAIL, userPasswordCharArray);
         homePage.closeShadowWindow();
 
-        // TODO проверка входа в аккаунт
-//        homePage.header().clickAccountButton();
-//        homePage.closeShadowWindow();
-//        System.out.println(homePage.header().loginModalComponent().getSidetrayTitle());
-    }
-
-    @Test
-    @Tag(P1_IMPORTANT_TAG)
-    @DisplayName("Log out")
-    void logoutUser() {
+        // Проверка входа в аккаунт
         homePage.header().clickAccountButton();
         homePage.closeShadowWindow();
 
-        // TODO В этом месте даже если зашел в аккаунт, всё равно показывает, что не вошел (кнопки sign out нет, только sign in)
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {
+        }
+
+        String sidetrayTitle = homePage.header().loginModalComponent().getSidetrayTitle();
+
+        assertNotEquals("Account", sidetrayTitle, "You're not logged in");
+    }
+
+    @DisplayName("Log out")
+    private void logoutUser() {
+        homePage.header().clickAccountButton();
+        homePage.closeShadowWindow();
+
+        // TODO Не может выйти, потому что не зашёл
         homePage.header().loginModalComponent().signOut(wait5sec);
         homePage.closeShadowWindow();
 

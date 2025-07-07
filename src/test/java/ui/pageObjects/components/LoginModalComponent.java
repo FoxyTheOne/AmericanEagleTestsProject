@@ -35,7 +35,8 @@ public class LoginModalComponent {
     @FindBy(css = "button[data-test-id='account-sign-out']")
     private WebElement signOutButton;
 
-    @FindBy(css = "h2[class='modal-title']")
+    //    @FindBy(css = "h2[class='modal-title']")
+    @FindBy(xpath = "//div[@class='modal-dialog']/div/div/h2")
     private WebElement sidetrayTitleElement;
 
     // -= ACTIONS =-
@@ -46,15 +47,14 @@ public class LoginModalComponent {
         for (char passwordChar : passwordArray) {
             passwordInput.sendKeys(String.valueOf(passwordChar));
         }
-
 //        actions.sendKeys(passwordInput, Keys.chord(String.valueOf(passwordArray)));
-//        try {
-//            Thread.sleep(4000);
-//            signInButton.click();
-//        } catch (InterruptedException ignored) {
-//        }
 
         signInButton.click();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException ignored) {
+        }
 
         actions.sendKeys(Keys.ESCAPE).perform();
     }
