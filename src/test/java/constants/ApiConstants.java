@@ -7,9 +7,6 @@ public class ApiConstants {
         // Not called
     }
 
-    public static final double SHIPPING_PRICE = 7.95;
-    public static final double PRICE_FOR_UNLOCKING_FREE_SHIPPING = 75;
-
     // Items
     public static final Item MAN_CONVERSE = Item.builder()
             .itemId("563ddb44-50b9-4531-a416-baffc3f88569")

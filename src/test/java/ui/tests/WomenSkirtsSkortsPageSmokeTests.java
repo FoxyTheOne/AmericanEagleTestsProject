@@ -24,13 +24,8 @@ class WomenSkirtsSkortsPageSmokeTests extends BaseTestSettings {
     @Tag(PO_CRUCIAL_TAG)
     @DisplayName("Open women skirts & skorts page from header on homepage and check url and titles")
     void openWomenSkirtsSkortsPageTest() {
-        // Открываем выпадающее меню
-        homePage.header().openWomenMenu(actions);
-        homePage.header().waitForSkirtsLink(wait5sec);
-
-        // Реализуем переход между страницами:
+        homePage.header().openWomenMenu();
         WomenSkirtsSkortsPage womenSkirtsSkortsPage = homePage.header().openWomenSkirtsSkortsPage();
-        womenSkirtsSkortsPage.closeShadowWindow();
 
         String actualGeneralWebTitle = womenSkirtsSkortsPage.getGeneralWebTitle();
         String actualCurrentUrl = womenSkirtsSkortsPage.getCurrentUrl();

@@ -1,13 +1,10 @@
 package ui.pageObjects;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -35,28 +32,27 @@ public class ProductPage extends BasePage {
     @FindBy(css = "div[data-test-select-custom='size'] .dropdown-menu li:not(.visually-disabled)")
     private List<WebElement> availableSizes;
 
-    //    @FindBy(css = ".modal-dialog.modal-content.modal-header.btn-close")
+    @FindBy(css = "button[aria-label='increase']")
+    private WebElement addQuantityButton;
+
     @FindBy(xpath = "//div[@class='modal-dialog']/div/div/button")
     private WebElement closeButton;
 
     // -= ACTIONS =-
     @Step("Select first available size")
-    public void selectFirstAvailableSize(WebDriverWait wait, Actions actions) {
+    public void selectFirstAvailableSize() {
+        closePopUpWindowIfExists();
         LOGGER.debug("Скролл");
         actions
                 .scrollToElement(iconReturnItemsSvg)
                 .perform();
 
-        try {
-            LOGGER.debug("Раскрываем выпадающий список размеров");
-            wait.until(ExpectedConditions.elementToBeClickable(sizeDropdownToggle)).click();
-        } catch (TimeoutException e) {
-            closeShadowWindow();
-            wait.until(ExpectedConditions.elementToBeClickable(sizeDropdownToggle)).click();
-        }
+        closePopUpWindowIfExists();
+        LOGGER.debug("Раскрываем выпадающий список размеров");
+        wait5sec.until(ExpectedConditions.elementToBeClickable(sizeDropdownToggle)).click();
 
         LOGGER.debug("Ждем появления доступных размеров");
-        wait.until(ExpectedConditions.visibilityOfAllElements(availableSizes));
+        wait5sec.until(ExpectedConditions.visibilityOfAllElements(availableSizes));
 
         LOGGER.debug("Выбираем первый доступный размер");
         if (!availableSizes.isEmpty()) {
@@ -68,37 +64,46 @@ public class ProductPage extends BasePage {
     }
 
     @Step("Click add to bag button")
-    public void addToCart(WebDriverWait wait, Actions actions) {
+    public void addToCart() {
+        closePopUpWindowIfExists();
         LOGGER.debug("addToBagButton click in addToCart");
-        wait.until(ExpectedConditions.elementToBeClickable(addToBagButton)).click();
+        wait5sec.until(ExpectedConditions.elementToBeClickable(addToBagButton)).click();
 
-//        LOGGER.debug("Keys.ESCAPE click in addToCart");
+        LOGGER.debug("closeButton click in after adding to cart");
+        closeButton.click();
+    }
+
+    @Step("Click add to bag button MAX times without closing modal")
+    public int addToCartMaxQuantityWithoutClosingModal() {
+        closePopUpWindowIfExists();
+
+        int clickCount = 0;
+        while (addQuantityButton.isEnabled()) {
+            addQuantityButton.click();
+            clickCount++;
+        }
+
+        wait5sec.until(ExpectedConditions.elementToBeClickable(addToBagButton)).click();
+
+        return clickCount;
+    }
+
+    @Step("Close modal after adding to cart")
+    public void closeModalAfterAddingToCart() {
 //        actions.sendKeys(Keys.ESCAPE).perform();
-
-        LOGGER.debug("closeButton click in addToCart");
         closeButton.click();
     }
 
     @Step("Get product price")
-    public double getProductPrice(WebDriverWait wait) {
-        String priceText;
-        try {
-            // Обрабатываем случай, когда цена содержит дополнительный текст (например "Now $44.95")
-            priceText = wait.until(ExpectedConditions.visibilityOf(productPriceElement))
-                    .getText()
-                    .replace("Now", "")
-                    .replace("$", "")
-                    .replace(",", "")
-                    .trim();
-        } catch (TimeoutException e) {
-            closeShadowWindow();
-            priceText = wait.until(ExpectedConditions.visibilityOf(productPriceElement))
-                    .getText()
-                    .replace("Now", "")
-                    .replace("$", "")
-                    .replace(",", "")
-                    .trim();
-        }
+    public double getProductPrice() {
+        closePopUpWindowIfExists();
+        // Обрабатываем случай, когда цена содержит дополнительный текст (например "Now $44.95")
+        String priceText = wait5sec.until(ExpectedConditions.visibilityOf(productPriceElement))
+                .getText()
+                .replace("Now", "")
+                .replace("$", "")
+                .replace(",", "")
+                .trim();
         return Double.parseDouble(priceText);
     }
 

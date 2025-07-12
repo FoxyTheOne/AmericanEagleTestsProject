@@ -52,15 +52,14 @@ class HomePageSmokeTests extends BaseTestSettings {
     @DisplayName("Open menu on homepage")
     void openWomenMenu() {
         // Один локатор - один тест. Проверим на всякий случай отдельно
-        homePage.header().openWomenMenu(actions);
+        homePage.header().openWomenMenu();
     }
 
     @Test
     @Tag(PO_CRUCIAL_TAG)
     @DisplayName("Open menu and find skirts catalog link on homepage")
     void openMenuAndFindSkirtsLink() {
-        homePage.header().openWomenMenu(actions);
-        homePage.header().waitForSkirtsLink(wait5sec);
+        homePage.header().openWomenMenu();
 
         String actualSkirtsLinkTextContent = homePage.header().getTextContentOfSkirtsLink();
         String actualSkirtsLinkHref = homePage.header().getTheSkirtsLink();
@@ -85,7 +84,6 @@ class HomePageSmokeTests extends BaseTestSettings {
     @DisplayName("Click search button and check search input is displayed on homepage")
     void checkSearchButtonClick() {
         homePage.header().clickSearchButton();
-        homePage.header().waitForSearchInput(wait5sec);
         Boolean isSearchInputDisplayed = homePage.header().isSearchInputDisplayed();
 
         assertTrue(isSearchInputDisplayed);
@@ -105,9 +103,7 @@ class HomePageSmokeTests extends BaseTestSettings {
     @DisplayName("Check sign in button on homepage")
     void checkSignInButton() {
         homePage.header().clickAccountButton();
-        homePage.closeShadowWindow();
 
-        homePage.header().waitForSignInButton(wait5sec);
         Boolean isSignInButtonDisplayed = homePage.header().isSignInButtonDisplayed();
 
         assertTrue(isSignInButtonDisplayed);
@@ -118,9 +114,7 @@ class HomePageSmokeTests extends BaseTestSettings {
     @DisplayName("Check create account button on homepage")
     void checkCreateAccountButton() {
         homePage.header().clickAccountButton();
-        homePage.closeShadowWindow();
 
-        homePage.header().waitForCreateAccountButton(wait5sec);
         Boolean isCreateAccountButtonDisplayed = homePage.header().isCreateAccountButtonDisplayed();
 
         assertTrue(isCreateAccountButtonDisplayed);

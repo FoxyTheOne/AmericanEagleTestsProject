@@ -1,13 +1,12 @@
 package ui.pageObjects;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegistrationPage extends BasePage {
     public RegistrationPage(WebDriver driver) {
@@ -16,11 +15,9 @@ public class RegistrationPage extends BasePage {
 
     // -= LOCATORS =-
 //    @FindBy(css = ".form-input-login") // element not interactable
-//    @FindBy(css = "input[id='ember76-input']") // no such element: Unable to locate element
     @FindBy(css = "input[placeholder='Email']")
     private WebElement emailInputElement;
 
-    //    @FindBy(css = ".form-input-firstname") // element not interactable
     @FindBy(css = "input[placeholder='First Name']")
     private WebElement firstNameInputElement;
 
@@ -42,10 +39,7 @@ public class RegistrationPage extends BasePage {
     @FindBy(css = "select[name='day']")
     private WebElement daySelectElement;
 
-    @FindBy(css = "input[name='acceptTerms']") // Expected condition failed: waiting for element to be clickable
-//    @FindBy(css = ".aeo-checkbox-label") // Переходит по ссылке
-//    @FindBy(xpath = "//div[@data-test-checkbox='acceptTerms']/input") // Expected condition failed: waiting for element to be clickable
-//    @FindBy(css = "div[data-test-checkbox='acceptTerms']")
+    @FindBy(css = "input[name='acceptTerms']")
     private WebElement termsCheckbox;
 
     @FindBy(css = "button[data-test-btn='submit']")
@@ -53,8 +47,9 @@ public class RegistrationPage extends BasePage {
 
     // -= ACTIONS =-
     @Step("Register a new user")
-    public void registerUser(WebDriverWait wait, Actions actions, String email, String password, String firstName, String lastName, String zipCode) {
-        wait.until(ExpectedConditions.visibilityOf(emailInputElement)).sendKeys(email);
+    public void registerUser(String email, String password, String firstName, String lastName, String zipCode) {
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.visibilityOf(emailInputElement)).sendKeys(email);
         firstNameInputElement.sendKeys(firstName);
         lastNameInputElement.sendKeys(lastName);
         passwordInputElement.sendKeys(password);
@@ -69,12 +64,12 @@ public class RegistrationPage extends BasePage {
                 .scrollToElement(createAccountButton)
                 .perform();
 
-        // TODO нажатие на checkbox
-//        wait.until(ExpectedConditions.elementToBeClickable(termsCheckbox)).click();
-//        actions.moveToElement(termsCheckbox).click();
-        termsCheckbox.click();
+//        termsCheckbox.click(); // Не работает, попробовать через js
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", termsCheckbox);
 
-        wait.until(ExpectedConditions.elementToBeClickable(createAccountButton)).click();
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.elementToBeClickable(createAccountButton)).click();
     }
 
     // -= METHODS =-

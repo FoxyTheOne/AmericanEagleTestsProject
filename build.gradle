@@ -60,6 +60,7 @@ tasks.register('apiTests', Test) {
     useJUnitPlatform() {
         includeTags 'API'
         excludeTags 'UI'
+        excludeTags 'Defect'
     }
     systemProperties(System.getProperties())
 }
@@ -68,6 +69,23 @@ tasks.register('uiTests', Test) {
     useJUnitPlatform() {
         includeTags 'UI'
         excludeTags 'API'
+        excludeTags 'Defect'
+    }
+    systemProperties(System.getProperties())
+}
+
+tasks.register('allExceptDefect', Test) {
+    useJUnitPlatform() {
+        includeTags 'UI'
+        includeTags 'API'
+        excludeTags 'Defect'
+    }
+    systemProperties(System.getProperties())
+}
+
+tasks.register('defect', Test) {
+    useJUnitPlatform() {
+        includeTags 'Defect'
     }
     systemProperties(System.getProperties())
 }

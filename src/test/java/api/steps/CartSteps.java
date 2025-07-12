@@ -11,8 +11,8 @@ import utils.AeItemsUtils;
 
 import java.util.List;
 
-import static constants.ApiConstants.PRICE_FOR_UNLOCKING_FREE_SHIPPING;
-import static constants.ApiConstants.SHIPPING_PRICE;
+import static constants.CommonConstants.PRICE_FOR_UNLOCKING_FREE_SHIPPING;
+import static constants.CommonConstants.SHIPPING_PRICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CartSteps {

@@ -8,6 +8,9 @@ public class CommonConstants {
         // Not called
     }
 
+    public static final double PRICE_FOR_UNLOCKING_FREE_SHIPPING = 75;
+    public static final double SHIPPING_PRICE = 7.95;
+
     // Base tags
     public static final String SMOKE_TAG = "Smoke";
     public static final String EXTENDED_TAG = "Extended";

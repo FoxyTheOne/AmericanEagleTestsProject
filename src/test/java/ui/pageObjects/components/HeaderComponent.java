@@ -1,20 +1,18 @@
 package ui.pageObjects.components;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pageObjects.CartPage;
 import ui.pageObjects.RegistrationPage;
 import ui.pageObjects.WomenSkirtsSkortsPage;
 
 import java.util.Objects;
 
-public class HeaderComponent {
-    WebDriver driver;
+public class HeaderComponent extends BaseComponent {
     LoginModalComponent loginModalComponent;
 
     public static final String AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED = "American Eagle Outfitters";
@@ -22,8 +20,7 @@ public class HeaderComponent {
     public static final String SKIRTS_LINK_TEXT_CONTENT = "Skirts & Skorts";
 
     public HeaderComponent(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
         loginModalComponent = new LoginModalComponent(driver);
     }
 
@@ -52,7 +49,6 @@ public class HeaderComponent {
     @FindBy(xpath = "//a[@data-test='register-button']")
     private WebElement registerButtonElement;
 
-    //    @FindBy(xpath = "//a[@id='ember3']") // Поиском по ember3 находит разные, поэтому уточняю с помощью $
     @FindBy(css = "a[id$='ember3']")
     private WebElement favoritesLinkElement;
 
@@ -60,7 +56,6 @@ public class HeaderComponent {
     @FindBy(css = "svg[data-testid='icon-favorites']")
     private WebElement favoritesSvgElement;
 
-    //    @FindBy(xpath = "//a[@id='ember4']") // Поиском по ember4 находит разные, поэтому уточняю с помощью $
     @FindBy(css = "a[id$='ember4']")
     private WebElement cartLinkElement;
 
@@ -79,179 +74,168 @@ public class HeaderComponent {
 
     // -= ACTIONS =-
     public LoginModalComponent loginModalComponent() {
+        closePopUpWindowIfExists();
         return loginModalComponent;
     }
 
     @Step("Get main logo text")
     public String getAeLogoInBrandSelectorText() {
+        closePopUpWindowIfExists();
         return AeLogoInBrandSelector.getText();
     }
 
     @Step("Get main logo link")
     public String getAeLogoInBrandSelectorHref() {
+        closePopUpWindowIfExists();
         return AeLogoInBrandSelector.getDomProperty("href");
     }
 
     @Step("Get main logo title")
     public String getAeLogoInBrandSelectorTitle() {
+        closePopUpWindowIfExists();
         return AeLogoInBrandSelector.getDomProperty("title");
     }
 
     @Step("Check if main logo svg is displayed")
     public Boolean isAeLogoInBrandSelectorSvgDisplayed() {
+        closePopUpWindowIfExists();
         // SVG логотип внутри элемента:
         WebElement svg = AeLogoInBrandSelector.findElement(By.cssSelector("svg.aeo-icon-brand-max-aeo"));
         return svg.isDisplayed();
     }
 
-    @Step("Open women menu")
-    public void openWomenMenu(Actions actions) {
+    @Step("Open women menu and wait until skirts catalog link will appear")
+    public void openWomenMenu() {
+        closePopUpWindowIfExists();
+        actions
+                .scrollToElement(womenMenuElement)
+                .perform();
         actions.moveToElement(womenMenuElement).perform();
-    }
-
-    @Step("Wait until skirts catalog link will appear")
-    public void waitForSkirtsLink(WebDriverWait wait) {
-        wait.until(ExpectedConditions.visibilityOf(skirtsLinkElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(skirtsLinkElement));
     }
 
     @Step("Get text content of skirts catalog link")
     public String getTextContentOfSkirtsLink() {
+        closePopUpWindowIfExists();
         return Objects.requireNonNull(skirtsLinkElement.getDomProperty("textContent")).trim();
     }
 
     @Step("Get the link of skirts catalog")
     public String getTheSkirtsLink() {
+        closePopUpWindowIfExists();
         return skirtsLinkElement.getDomProperty("href");
     }
 
     @Step("Check if search button is displayed")
     public Boolean isSearchButtonSvgDisplayed() {
+        closePopUpWindowIfExists();
         return searchButtonElement.findElement(By.cssSelector("svg")).isDisplayed();
     }
 
     @Step("Click search button")
     public void clickSearchButton() {
+        closePopUpWindowIfExists();
         searchButtonElement.click();
     }
 
-    @Step("Wait until search input will appear")
-    public void waitForSearchInput(WebDriverWait wait) {
-        wait.until(ExpectedConditions.visibilityOf(searchInputElement));
-    }
-
-    @Step("Check if search input is displayed")
+    @Step("Wait until search input will appear and check if search input is displayed")
     public Boolean isSearchInputDisplayed() {
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.visibilityOf(searchInputElement));
         return searchInputElement.isDisplayed();
     }
 
     @Step("Check if account icon is displayed")
     public Boolean isAccountIconDisplayed() {
+        closePopUpWindowIfExists();
         return accountIconElement.isDisplayed();
     }
 
     @Step("Click account button")
     public void clickAccountButton() {
+        closePopUpWindowIfExists();
         accountIconElement.click();
-    }
-
-    @Step("Wait until sign in button will appear")
-    public void waitForSignInButton(WebDriverWait wait) {
-        wait.until(ExpectedConditions.visibilityOf(signInButtonElement));
     }
 
     @Step("Check if sign in button is displayed")
     public Boolean isSignInButtonDisplayed() {
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.visibilityOf(signInButtonElement));
         return signInButtonElement.isDisplayed();
     }
 
-    @Step("Click sign in button")
+    @Step("Wait until sign in button will appear and click sign in button")
     public void clickSignInButton() {
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.visibilityOf(signInButtonElement));
         signInButtonElement.click();
     }
 
-    @Step("Wait until create account button will appear")
-    public void waitForCreateAccountButton(WebDriverWait wait) {
-        wait.until(ExpectedConditions.visibilityOf(registerButtonElement));
-    }
-
-    @Step("Check if create account button is displayed")
+    @Step("Wait until create account button will appear and check if create account button is displayed")
     public Boolean isCreateAccountButtonDisplayed() {
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
         return registerButtonElement.isDisplayed();
     }
 
     @Step("Get the link of favorites button")
     public String getTheFavoritesLink() {
+        closePopUpWindowIfExists();
         return favoritesLinkElement.getDomProperty("href");
     }
 
     @Step("Check if the favorites button svg is displayed")
     public Boolean isTheFavoritesSvgDisplayed() {
+        closePopUpWindowIfExists();
         return favoritesSvgElement.isDisplayed();
     }
 
     @Step("Get the link of cart button")
     public String getTheCartLink() {
+        closePopUpWindowIfExists();
         return cartLinkElement.getDomProperty("href");
     }
 
     @Step("Check if the cart button svg is displayed")
     public Boolean isTheCartSvgDisplayed() {
+        closePopUpWindowIfExists();
         return cartButtonSvgElement.isDisplayed();
     }
 
     @Step("Check if the cart number indication is displayed")
     public Boolean isTheCartIndicationDisplayed() {
+        closePopUpWindowIfExists();
         return cartIndicatorElement.isDisplayed();
     }
 
     @Step("Get the number of cart indication")
     public int getTheNumberOfCartIndication() {
+        closePopUpWindowIfExists();
         return Integer.parseInt(cartIndicatorElement.getText());
-    }
-
-    @Step("Find and close shadow window")
-    private void closeShadowWindow() {
-        try {
-            SearchContext shadowRoot = contentShadow.getShadowRoot();
-            WebElement closeButton = shadowRoot.findElement(By.cssSelector("button[class='close']"));
-            closeButton.click();
-            System.out.println("Shadow DOM closed");
-        } catch (org.openqa.selenium.NoSuchElementException | StaleElementReferenceException ignored) {
-            // Игнорируем, если не было всплывающего окна
-        }
     }
 
     // -= METHODS =-
     @Step("Open women skirts & skorts page")
     public WomenSkirtsSkortsPage openWomenSkirtsSkortsPage() {
-        try {
-            skirtsLinkElement.click();
-        } catch (TimeoutException e) {
-            closeShadowWindow();
-            skirtsLinkElement.click();
-        }
-        return new WomenSkirtsSkortsPage(driver);
+        closePopUpWindowIfExists();
+        skirtsLinkElement.click();
+        WomenSkirtsSkortsPage womenSkirtsSkortsPage = new WomenSkirtsSkortsPage(driver);
+        womenSkirtsSkortsPage.waitForProductTiles();
+        return womenSkirtsSkortsPage;
     }
 
-    @Step("Open registration page")
+    @Step("Wait until create account button will appear and open registration page")
     public RegistrationPage openRegistrationPage() {
-        try {
-            registerButtonElement.click();
-        } catch (TimeoutException e) {
-            closeShadowWindow();
-            registerButtonElement.click();
-        }
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
+        registerButtonElement.click();
         return new RegistrationPage(driver);
     }
 
     @Step("Open cart page")
     public CartPage openCartPage() {
-        try {
-            cartIcon.click();
-        } catch (TimeoutException e) {
-            closeShadowWindow();
-            cartIcon.click();
-        }
+        closePopUpWindowIfExists();
+        cartIcon.click();
         return new CartPage(driver);
     }
 }
