@@ -71,6 +71,7 @@ tasks.register('allExceptDefect', Test) {
         excludeTags 'Defect'
     }
     systemProperties(System.getProperties())
+    maxParallelForks = 1
 }
 
 tasks.register('apiTests', Test) {
