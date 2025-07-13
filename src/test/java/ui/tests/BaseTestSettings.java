@@ -54,7 +54,7 @@ public class BaseTestSettings {
     }
 
     private void initDriver() {
-        String remoteUrl = System.getenv("SELENIDE_REMOTE_URL");
+        String remoteUrl = System.getenv("SELENIUM_REMOTE_URL");
         if (remoteUrl != null && !remoteUrl.isEmpty()) {
             Allure.addAttachment("remote", remoteUrl);
             ChromeOptions options = new ChromeOptions();
