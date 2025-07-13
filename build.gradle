@@ -56,6 +56,23 @@ test {
     }
 }
 
+tasks.register('smoke', Test) {
+    useJUnitPlatform() {
+        includeTags 'Smoke'
+        excludeTags 'Defect'
+    }
+    systemProperties(System.getProperties())
+}
+
+tasks.register('allExceptDefect', Test) {
+    useJUnitPlatform() {
+        includeTags 'UI'
+        includeTags 'API'
+        excludeTags 'Defect'
+    }
+    systemProperties(System.getProperties())
+}
+
 tasks.register('apiTests', Test) {
     useJUnitPlatform() {
         includeTags 'API'
@@ -69,15 +86,6 @@ tasks.register('uiTests', Test) {
     useJUnitPlatform() {
         includeTags 'UI'
         excludeTags 'API'
-        excludeTags 'Defect'
-    }
-    systemProperties(System.getProperties())
-}
-
-tasks.register('allExceptDefect', Test) {
-    useJUnitPlatform() {
-        includeTags 'UI'
-        includeTags 'API'
         excludeTags 'Defect'
     }
     systemProperties(System.getProperties())
