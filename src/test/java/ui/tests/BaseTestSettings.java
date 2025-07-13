@@ -21,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Map;
+import java.util.UUID;
 
 @Feature("Extensions")
 @ExtendWith(AfterTestExtension.class)
@@ -57,10 +58,21 @@ public class BaseTestSettings {
         if (remoteUrl != null && !remoteUrl.isEmpty()) {
             Allure.addAttachment("remote", remoteUrl);
             ChromeOptions options = new ChromeOptions();
+
+            // Общие настройки
             options.addArguments("--headless");  // Add headless mode
             options.addArguments("--disable-gpu"); // Switch off GPU, because we don't need it in headless mode
             options.addArguments("--no-sandbox"); // Switch off sandbox to prevent access rights issues
             options.addArguments("--disable-dev-shm-usage"); // Use /tmp instead of /dev/shm
+
+            // Уникальный user-data-dir для каждого экземпляра (В CI/CD был конфликт)
+            options.addArguments("--user-data-dir=/tmp/chrome_profile_" + UUID.randomUUID());
+
+            // Дополнительные параметры для стабильности
+            options.addArguments("--remote-debugging-port=0");
+            options.addArguments("--disable-setuid-sandbox");
+            options.addArguments("--disable-extensions");
+
             options.setCapability("goog:loggingPrefs", Map.of("browser", "ALL"));
             try {
                 driver = new RemoteWebDriver(new URL(remoteUrl), options);
