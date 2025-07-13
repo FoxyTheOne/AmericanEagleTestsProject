@@ -46,20 +46,6 @@ jobs:
         SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
       run: ./gradlew allExceptDefect -Denv=default
 
-  dependency-submission:
-
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-
     - name: Copy History
       uses: actions/checkout@v2
       if: always()
