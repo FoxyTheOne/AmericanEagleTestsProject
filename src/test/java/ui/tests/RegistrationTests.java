@@ -9,7 +9,6 @@ import utils.TestDataGeneratorUtils;
 
 import static constants.CommonConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tags({@Tag(UI_TAG), @Tag(EXTENDED_TAG)})
 class RegistrationTests extends BaseTestSettings {
@@ -22,19 +21,11 @@ class RegistrationTests extends BaseTestSettings {
         homePage = new HomePage(driver);
     }
 
-    // TODO нажатие на checkbox не работает.
-    // TODO Исправить генерацию фамилии, пароля, zip
     @Test
     @Tags({@Tag(P1_IMPORTANT_TAG), @Tag(DEFECT_TAG)})
-    // Из-за защиты от ботов, сайт не позволяет зарегистрироваться через тест
     @DisplayName("Register a new account")
     void testNewAccountCartIsEmpty() {
         homePage.header().clickAccountButton();
-
-        Boolean isCreateAccountButtonDisplayed = homePage.header().isCreateAccountButtonDisplayed();
-
-        assertTrue(isCreateAccountButtonDisplayed);
-
         RegistrationPage registrationPage = homePage.header().openRegistrationPage();
 
         // Генерация тестовых данных
@@ -42,11 +33,11 @@ class RegistrationTests extends BaseTestSettings {
         String firstName = TestDataGeneratorUtils.generateFirstName();
         String lastName = TestDataGeneratorUtils.generateLastName();
         String password = TestDataGeneratorUtils.generatePassword();
-        String zipCode = "123456";
+        String zipCode = "64648";
 
-        FileUtils.writeHtmlInTxtFile(email + "/" + firstName + "/" + lastName + "/" + password + "/" + zipCode, "src/test/resources/registration.txt"); // TODO после починки теста сохранять в файл только зарегистрированные аккаунты
-        // Регистрация
+        // Из-за защиты Akamai сайт не позволяет зарегистрироваться через тест
         registrationPage.registerUser(email, firstName, lastName, password, zipCode);
+        FileUtils.writeHtmlInTxtFile(email + "/" + firstName + "/" + lastName + "/" + password + "/" + zipCode, "src/test/resources/registration.txt");
 
         CartPage cartPage = registrationPage.header().openCartPage();
 

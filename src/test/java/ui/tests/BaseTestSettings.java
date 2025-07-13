@@ -19,8 +19,8 @@ import java.time.Duration;
 @Feature("Extensions")
 @ExtendWith(AfterTestExtension.class)
 public class BaseTestSettings {
-    protected static final Logger LOGGER = LoggerFactory.getLogger(BaseTestSettings.class);
     ITestPropertiesConfig config = ConfigFactory.create(ITestPropertiesConfig.class, System.getProperties());
+    protected static final Logger LOGGER = LoggerFactory.getLogger(BaseTestSettings.class);
     protected WebDriver driver;
 
     @BeforeEach

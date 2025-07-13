@@ -138,8 +138,8 @@ class CartGuestTests extends BaseTestSettings {
         womenSkirtsSkortsPage.addItemsToUnlockFreeShipping();
 
         cartPage = womenSkirtsSkortsPage.header().openCartPage();
-
         String actualShippingMessage = cartPage.getShippingMessage();
+
         assertEquals("Free shipping unlocked — make the most of it!", actualShippingMessage);
     }
 }

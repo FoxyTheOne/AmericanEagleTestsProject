@@ -84,13 +84,11 @@ public class ProductPage extends BasePage {
         }
 
         wait5sec.until(ExpectedConditions.elementToBeClickable(addToBagButton)).click();
-
         return clickCount;
     }
 
     @Step("Close modal after adding to cart")
     public void closeModalAfterAddingToCart() {
-//        actions.sendKeys(Keys.ESCAPE).perform();
         closeButton.click();
     }
 

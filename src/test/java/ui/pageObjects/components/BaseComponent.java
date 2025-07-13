@@ -17,8 +17,6 @@ public class BaseComponent {
     protected WebDriverWait wait5sec;
     protected static final Logger LOGGER = LoggerFactory.getLogger(BaseComponent.class);
 
-    // Константы, используемые в разных компонентах
-
     public BaseComponent(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);

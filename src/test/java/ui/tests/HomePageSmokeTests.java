@@ -115,9 +115,7 @@ class HomePageSmokeTests extends BaseTestSettings {
     void checkCreateAccountButton() {
         homePage.header().clickAccountButton();
 
-        Boolean isCreateAccountButtonDisplayed = homePage.header().isCreateAccountButtonDisplayed();
-
-        assertTrue(isCreateAccountButtonDisplayed);
+        assertTrue(homePage.header().isRegisterButtonDisplayed());
     }
 
     @Test

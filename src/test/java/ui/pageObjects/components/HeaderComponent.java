@@ -13,11 +13,11 @@ import ui.pageObjects.WomenSkirtsSkortsPage;
 import java.util.Objects;
 
 public class HeaderComponent extends BaseComponent {
-    LoginModalComponent loginModalComponent;
-
     public static final String AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED = "American Eagle Outfitters";
     public static final String AE_LOGO_IN_BRAND_SELECTOR_TEXT = "Go to aeo homepage";
     public static final String SKIRTS_LINK_TEXT_CONTENT = "Skirts & Skorts";
+
+    LoginModalComponent loginModalComponent;
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
@@ -99,7 +99,6 @@ public class HeaderComponent extends BaseComponent {
     @Step("Check if main logo svg is displayed")
     public Boolean isAeLogoInBrandSelectorSvgDisplayed() {
         closePopUpWindowIfExists();
-        // SVG логотип внутри элемента:
         WebElement svg = AeLogoInBrandSelector.findElement(By.cssSelector("svg.aeo-icon-brand-max-aeo"));
         return svg.isDisplayed();
     }
@@ -155,6 +154,7 @@ public class HeaderComponent extends BaseComponent {
     public void clickAccountButton() {
         closePopUpWindowIfExists();
         accountIconElement.click();
+        waitForDisplayingRegisterButton();
     }
 
     @Step("Check if sign in button is displayed")
@@ -171,8 +171,14 @@ public class HeaderComponent extends BaseComponent {
         signInButtonElement.click();
     }
 
-    @Step("Wait until create account button will appear and check if create account button is displayed")
-    public Boolean isCreateAccountButtonDisplayed() {
+    @Step("Wait until create account button will appear")
+    public void waitForDisplayingRegisterButton() {
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
+    }
+
+    @Step("Check if create account button is displayed")
+    public boolean isRegisterButtonDisplayed() {
         closePopUpWindowIfExists();
         wait5sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
         return registerButtonElement.isDisplayed();
@@ -235,6 +241,9 @@ public class HeaderComponent extends BaseComponent {
     @Step("Open cart page")
     public CartPage openCartPage() {
         closePopUpWindowIfExists();
+        actions
+                .scrollToElement(cartIcon)
+                .perform();
         cartIcon.click();
         return new CartPage(driver);
     }

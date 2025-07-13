@@ -25,7 +25,7 @@ public class LoginModalComponent extends BaseComponent {
     @FindBy(css = "a[data-test='create-account']")
     private WebElement createAccountButton;
 
-    @FindBy(css = "button[data-test-id='account-sign-out']")
+    @FindBy(css = "button[data-test-btn='sign-out']")
     private WebElement signOutButton;
 
     @FindBy(xpath = "//div[@class='modal-dialog']/div/div/h2")
@@ -43,12 +43,7 @@ public class LoginModalComponent extends BaseComponent {
 
         signInButton.click();
         closePopUpWindowIfExists();
-
-        // TODO
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException ignored) {
-        }
+        waitingForSignOutButton();
 
         actions.sendKeys(Keys.ESCAPE).perform();
     }
@@ -59,10 +54,16 @@ public class LoginModalComponent extends BaseComponent {
         return sidetrayTitleElement.getText();
     }
 
+    @Step("Waiting for log out button")
+    public void waitingForSignOutButton() {
+        closePopUpWindowIfExists();
+        wait5sec.until(ExpectedConditions.elementToBeClickable(signOutButton));
+    }
+
     @Step("Log out")
     public void signOut() {
-        closePopUpWindowIfExists();
-        wait5sec.until(ExpectedConditions.elementToBeClickable(signOutButton)).click();
+        waitingForSignOutButton();
+        signOutButton.click();
     }
 
     // -= METHODS =-

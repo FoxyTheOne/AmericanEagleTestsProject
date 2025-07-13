@@ -62,7 +62,6 @@ public class CartPage extends BasePage {
 
     @Step("Get quantity for first item")
     public int getQuantityForFirstItem() {
-        // TODO переделать с @FindBy
         closePopUpWindowIfExists();
         WebElement quantityElement = wait5sec.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector(".cart-item-quantity")));

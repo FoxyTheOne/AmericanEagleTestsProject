@@ -47,7 +47,7 @@ public class RegistrationPage extends BasePage {
 
     // -= ACTIONS =-
     @Step("Register a new user")
-    public void registerUser(String email, String password, String firstName, String lastName, String zipCode) {
+    public void registerUser(String email, String firstName, String lastName, String password, String zipCode) {
         closePopUpWindowIfExists();
         wait5sec.until(ExpectedConditions.visibilityOf(emailInputElement)).sendKeys(email);
         firstNameInputElement.sendKeys(firstName);
@@ -56,7 +56,6 @@ public class RegistrationPage extends BasePage {
         confirmPasswordInputElement.sendKeys(password);
         zipCodeInputElement.sendKeys(zipCode);
 
-        // Select birthday (random values)
         new Select(monthSelectElement).selectByValue("1");
         new Select(daySelectElement).selectByValue("1");
 
@@ -64,7 +63,7 @@ public class RegistrationPage extends BasePage {
                 .scrollToElement(createAccountButton)
                 .perform();
 
-//        termsCheckbox.click(); // Не работает, попробовать через js
+//        termsCheckbox.click(); -> Не работает, используем js:
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", termsCheckbox);
 

@@ -16,19 +16,18 @@ import java.time.Duration;
  * Класс для общих элементов сайта и общих действий
  */
 public class BasePage {
-    WebDriver driver;
-    HeaderComponent header;
-    protected Actions actions;
-    protected WebDriverWait wait5sec;
-    protected static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
-
-    // Константы, используемые на разных страницах
     public static final String BASE_URL = "https://www.ae.com";
     public static final String HOME_URL = "/us/en";
     public static final String WOMEN_SKIRTS_URL = "/c/women/bottoms/skirts-skorts";
     public static final String FAVORITES_URL = "/favorites";
     public static final String CART_URL = "/cart";
     public static final String GENERAL_WEB_TITLE_CONTAINS_EXPECTED = " | American Eagle";
+
+    WebDriver driver;
+    HeaderComponent header;
+    protected Actions actions;
+    protected WebDriverWait wait5sec;
+    protected static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

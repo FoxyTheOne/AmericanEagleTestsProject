@@ -65,9 +65,11 @@ public class WomenSkirtsSkortsPage extends BasePage {
 
     @Step("Get product price from modal")
     public double getProductPriceFromModal() {
+        closePopUpWindowIfExists();
         wait5sec.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("div.modal-dialog")
         ));
+        closePopUpWindowIfExists();
         wait5sec.until(ExpectedConditions.visibilityOf(productSumInModal));
         String priceText = productSumInModal.getText()
                 .replace("$", "")

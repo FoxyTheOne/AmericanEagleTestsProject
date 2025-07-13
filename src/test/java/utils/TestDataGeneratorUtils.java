@@ -10,7 +10,7 @@ public class TestDataGeneratorUtils {
     }
 
     public static String generatePassword() {
-        return faker.internet().password(24, 25, true, true);
+        return faker.internet().password(20, 25, true, true);
     }
 
     public static String generateFirstName() {
@@ -18,7 +18,6 @@ public class TestDataGeneratorUtils {
     }
 
     public static String generateLastName() {
-//        return faker.name().lastName(); // Пишет набор символов
-        return faker.name().firstName();
+        return faker.name().lastName();
     }
 }
