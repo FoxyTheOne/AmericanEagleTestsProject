@@ -21,10 +21,7 @@ jobs:
     services:
       selenium:
         image: selenium/standalone-chrome:latest
-        options:
-          - --shm-size=2g
-          - --disable-dev-shm-usage
-          - --no-sandbox
+        options: --shm-size 2g
         ports:
           - 4444:4444
 
