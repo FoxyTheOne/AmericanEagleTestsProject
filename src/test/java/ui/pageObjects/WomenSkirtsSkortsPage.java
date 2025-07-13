@@ -92,6 +92,7 @@ public class WomenSkirtsSkortsPage extends BasePage {
         closePopUpWindowIfExists();
         wait5sec.until(ExpectedConditions.visibilityOfAllElements(productTiles));
 
+        closePopUpWindowIfExists();
         if (!productTiles.isEmpty()) {
             productTiles.get(0).click();
         }
