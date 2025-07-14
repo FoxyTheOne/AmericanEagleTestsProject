@@ -71,6 +71,15 @@ tasks.register('allExceptDefect', Test) {
         excludeTags 'Defect'
     }
     systemProperties(System.getProperties())
+}
+
+tasks.register('allExceptDefectRemote', Test) {
+    useJUnitPlatform() {
+        includeTags 'UI'
+        includeTags 'API'
+        excludeTags 'Defect'
+    }
+    systemProperties(System.getProperties())
     maxParallelForks = 1
 }
 
