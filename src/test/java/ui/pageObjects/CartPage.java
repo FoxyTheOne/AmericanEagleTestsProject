@@ -53,7 +53,7 @@ public class CartPage extends BasePage {
     public int getCartItemCount() {
         if (!cartItems.isEmpty()) {
             closePopUpWindowIfExists();
-            wait5sec.until(ExpectedConditions.visibilityOf(cartItems.get(0)));
+            wait10sec.until(ExpectedConditions.visibilityOf(cartItems.get(0)));
             return cartItems.size();
         } else {
             return 0;
@@ -63,7 +63,7 @@ public class CartPage extends BasePage {
     @Step("Get quantity for first item")
     public int getQuantityForFirstItem() {
         closePopUpWindowIfExists();
-        WebElement quantityElement = wait5sec.until(ExpectedConditions
+        WebElement quantityElement = wait10sec.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector(".cart-item-quantity")));
         return Integer.parseInt(quantityElement.getText().replace("Qty:", "").trim());
     }
@@ -72,15 +72,15 @@ public class CartPage extends BasePage {
     public void removeFirstItem(int currentNumberOfItems) {
         if (!removeButtons.isEmpty()) {
             closePopUpWindowIfExists();
-            wait5sec.until(ExpectedConditions.elementToBeClickable(removeButtons.get(0))).click();
-            wait5sec.until(ExpectedConditions.numberOfElementsToBeLessThan(By.cssSelector("div[data-testid='commerce-item']"), currentNumberOfItems));
+            wait10sec.until(ExpectedConditions.elementToBeClickable(removeButtons.get(0))).click();
+            wait10sec.until(ExpectedConditions.numberOfElementsToBeLessThan(By.cssSelector("div[data-testid='commerce-item']"), currentNumberOfItems));
         }
     }
 
     @Step("Get merchandise total")
     public double getMerchandiseTotal() {
         closePopUpWindowIfExists();
-        String totalText = wait5sec.until(ExpectedConditions.visibilityOf(merchandiseTotal))
+        String totalText = wait10sec.until(ExpectedConditions.visibilityOf(merchandiseTotal))
                 .getText()
                 .replace("$", "")
                 .replace(",", "");
@@ -91,7 +91,7 @@ public class CartPage extends BasePage {
     public void increaseQuantity() {
         closePopUpWindowIfExists();
         LOGGER.debug("editButton click");
-        wait5sec.until(ExpectedConditions.elementToBeClickable(editButton)).click();
+        wait10sec.until(ExpectedConditions.elementToBeClickable(editButton)).click();
 
         LOGGER.debug("Скролл");
         actions
@@ -99,13 +99,13 @@ public class CartPage extends BasePage {
                 .perform();
 
         LOGGER.debug("quantityIncreaseButton click");
-        wait5sec.until(ExpectedConditions.elementToBeClickable(quantityIncreaseButton)).click();
+        wait10sec.until(ExpectedConditions.elementToBeClickable(quantityIncreaseButton)).click();
 
         LOGGER.debug("updateBagButton click");
         updateBagButton.click();
 
         // Ждем обновления корзины
-        wait5sec.until(ExpectedConditions.invisibilityOf(updateBagButton));
+        wait10sec.until(ExpectedConditions.invisibilityOf(updateBagButton));
     }
 
     @Step("Get the price of the first item in cart")
@@ -116,7 +116,7 @@ public class CartPage extends BasePage {
             throw new RuntimeException("No items in cart");
         }
 
-        String priceText = wait5sec.until(ExpectedConditions.visibilityOf(itemPrices.get(0)))
+        String priceText = wait10sec.until(ExpectedConditions.visibilityOf(itemPrices.get(0)))
                 .getText()
                 .replace("$", "")
                 .replace(",", "")
@@ -128,7 +128,7 @@ public class CartPage extends BasePage {
     public double getShippingPrice() {
         closePopUpWindowIfExists();
 
-        String priceText = wait5sec.until(ExpectedConditions.visibilityOf(shippingPrice)).getText();
+        String priceText = wait10sec.until(ExpectedConditions.visibilityOf(shippingPrice)).getText();
 
         if (priceText.equals("Free")) {
             return 0;
@@ -144,7 +144,7 @@ public class CartPage extends BasePage {
     public double getSubTotalPrice() {
         closePopUpWindowIfExists();
 
-        String priceText = wait5sec.until(ExpectedConditions.visibilityOf(subTotalPrice))
+        String priceText = wait10sec.until(ExpectedConditions.visibilityOf(subTotalPrice))
                 .getText()
                 .replace("$", "")
                 .replace(",", "")

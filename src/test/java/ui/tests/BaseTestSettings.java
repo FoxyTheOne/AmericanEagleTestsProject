@@ -21,7 +21,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Map;
-import java.util.UUID;
 
 @Feature("Extensions")
 @ExtendWith(AfterTestExtension.class)
@@ -37,7 +36,6 @@ public class BaseTestSettings {
         }
         initDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @AfterEach
@@ -65,11 +63,13 @@ public class BaseTestSettings {
             options.setCapability("goog:loggingPrefs", Map.of("browser", "ALL"));
             try {
                 driver = new RemoteWebDriver(new URL(remoteUrl), options);
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
             } catch (MalformedURLException e) {
                 throw new RuntimeException("Malformed URL for Selenium Remote WebDriver", e);
             }
         } else {
             driver = new ChromeDriver();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         }
     }
 

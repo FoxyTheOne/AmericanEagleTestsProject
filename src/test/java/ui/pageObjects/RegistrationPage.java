@@ -49,7 +49,7 @@ public class RegistrationPage extends BasePage {
     @Step("Register a new user")
     public void registerUser(String email, String firstName, String lastName, String password, String zipCode) {
         closePopUpWindowIfExists();
-        wait5sec.until(ExpectedConditions.visibilityOf(emailInputElement)).sendKeys(email);
+        wait10sec.until(ExpectedConditions.visibilityOf(emailInputElement)).sendKeys(email);
         firstNameInputElement.sendKeys(firstName);
         lastNameInputElement.sendKeys(lastName);
         passwordInputElement.sendKeys(password);
@@ -68,7 +68,7 @@ public class RegistrationPage extends BasePage {
         js.executeScript("arguments[0].click();", termsCheckbox);
 
         closePopUpWindowIfExists();
-        wait5sec.until(ExpectedConditions.elementToBeClickable(createAccountButton)).click();
+        wait10sec.until(ExpectedConditions.elementToBeClickable(createAccountButton)).click();
     }
 
     // -= METHODS =-

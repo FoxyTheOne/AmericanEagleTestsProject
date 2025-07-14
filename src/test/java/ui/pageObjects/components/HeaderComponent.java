@@ -106,13 +106,15 @@ public class HeaderComponent extends BaseComponent {
     @Step("Open women menu and wait until skirts catalog link will appear")
     public void openWomenMenu() {
         closePopUpWindowIfExists();
+        LOGGER.debug("Скролл к ссылке выпадающего меню Woman");
         actions
                 .scrollToElement(womenMenuElement)
                 .pause(500) // Короткая пауза
                 .perform();
+        LOGGER.debug("Скролл выполнен. Передвижение курсора мыши к ссылке выпадающего меню Woman");
         closePopUpWindowIfExists();
         actions.moveToElement(womenMenuElement).perform();
-        closePopUpWindowIfExists();
+        LOGGER.debug("Ждём отображения ссылки skirtsLinkElement");
         wait5sec.until(ExpectedConditions.visibilityOf(skirtsLinkElement));
     }
 
