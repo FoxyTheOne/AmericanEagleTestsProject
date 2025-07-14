@@ -49,10 +49,10 @@ public class ProductPage extends BasePage {
 
         closePopUpWindowIfExists();
         LOGGER.debug("Раскрываем выпадающий список размеров");
-        wait10sec.until(ExpectedConditions.elementToBeClickable(sizeDropdownToggle)).click();
+        wait5sec.until(ExpectedConditions.elementToBeClickable(sizeDropdownToggle)).click();
 
         LOGGER.debug("Ждем появления доступных размеров");
-        wait10sec.until(ExpectedConditions.visibilityOfAllElements(availableSizes));
+        wait5sec.until(ExpectedConditions.visibilityOfAllElements(availableSizes));
 
         LOGGER.debug("Выбираем первый доступный размер");
         if (!availableSizes.isEmpty()) {
@@ -67,7 +67,7 @@ public class ProductPage extends BasePage {
     public void addToCart() {
         closePopUpWindowIfExists();
         LOGGER.debug("addToBagButton click in addToCart");
-        wait10sec.until(ExpectedConditions.elementToBeClickable(addToBagButton)).click();
+        wait5sec.until(ExpectedConditions.elementToBeClickable(addToBagButton)).click();
 
         LOGGER.debug("closeButton click in after adding to cart");
         closeButton.click();
@@ -83,7 +83,7 @@ public class ProductPage extends BasePage {
             clickCount++;
         }
 
-        wait10sec.until(ExpectedConditions.elementToBeClickable(addToBagButton)).click();
+        wait5sec.until(ExpectedConditions.elementToBeClickable(addToBagButton)).click();
         return clickCount;
     }
 
@@ -96,7 +96,7 @@ public class ProductPage extends BasePage {
     public double getProductPrice() {
         closePopUpWindowIfExists();
         // Обрабатываем случай, когда цена содержит дополнительный текст (например "Now $44.95")
-        String priceText = wait10sec.until(ExpectedConditions.visibilityOf(productPriceElement))
+        String priceText = wait5sec.until(ExpectedConditions.visibilityOf(productPriceElement))
                 .getText()
                 .replace("Now", "")
                 .replace("$", "")

@@ -108,20 +108,20 @@ public class HeaderComponent extends BaseComponent {
         LOGGER.debug("Скролл к ссылке выпадающего меню Woman");
         closePopUpWindowIfExists();
         actions
-                .scrollToElement(womenMenuElement)
                 .pause(2000)
+                .scrollToElement(womenMenuElement)
                 .perform();
 
         LOGGER.debug("Ожидание отображения элемента меню womenMenuElement");
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.visibilityOf(womenMenuElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(womenMenuElement));
 
         LOGGER.debug("Скролл выполнен. Передвижение курсора мыши к ссылке выпадающего меню Woman");
         closePopUpWindowIfExists();
         actions.moveToElement(womenMenuElement).perform();
 
         LOGGER.debug("Ожидание отображения элемента меню skirtsLinkElement");
-        wait10sec.until(ExpectedConditions.visibilityOf(skirtsLinkElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(skirtsLinkElement));
     }
 
     @Step("Get text content of skirts catalog link")
@@ -151,7 +151,7 @@ public class HeaderComponent extends BaseComponent {
     @Step("Wait until search input will appear and check if search input is displayed")
     public Boolean isSearchInputDisplayed() {
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.visibilityOf(searchInputElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(searchInputElement));
         return searchInputElement.isDisplayed();
     }
 
@@ -171,27 +171,27 @@ public class HeaderComponent extends BaseComponent {
     @Step("Check if sign in button is displayed")
     public Boolean isSignInButtonDisplayed() {
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.visibilityOf(signInButtonElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(signInButtonElement));
         return signInButtonElement.isDisplayed();
     }
 
     @Step("Wait until sign in button will appear and click sign in button")
     public void clickSignInButton() {
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.visibilityOf(signInButtonElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(signInButtonElement));
         signInButtonElement.click();
     }
 
     @Step("Wait until create account button will appear")
     public void waitForDisplayingRegisterButton() {
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
     }
 
     @Step("Check if create account button is displayed")
     public boolean isRegisterButtonDisplayed() {
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
         return registerButtonElement.isDisplayed();
     }
 
@@ -244,7 +244,7 @@ public class HeaderComponent extends BaseComponent {
     @Step("Wait until create account button will appear and open registration page")
     public RegistrationPage openRegistrationPage() {
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
+        wait5sec.until(ExpectedConditions.visibilityOf(registerButtonElement));
         registerButtonElement.click();
         return new RegistrationPage(driver);
     }

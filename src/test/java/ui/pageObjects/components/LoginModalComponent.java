@@ -35,7 +35,7 @@ public class LoginModalComponent extends BaseComponent {
     @Step("Log in")
     public void login(String email, char[] passwordArray) {
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(email);
+        wait5sec.until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(email);
 
         for (char passwordChar : passwordArray) {
             passwordInput.sendKeys(String.valueOf(passwordChar));
@@ -57,7 +57,7 @@ public class LoginModalComponent extends BaseComponent {
     @Step("Waiting for log out button")
     public void waitingForSignOutButton() {
         closePopUpWindowIfExists();
-        wait10sec.until(ExpectedConditions.elementToBeClickable(signOutButton));
+        wait5sec.until(ExpectedConditions.elementToBeClickable(signOutButton));
     }
 
     @Step("Log out")

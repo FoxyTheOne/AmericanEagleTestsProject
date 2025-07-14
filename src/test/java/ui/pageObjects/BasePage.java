@@ -26,7 +26,7 @@ public class BasePage {
     WebDriver driver;
     HeaderComponent header;
     protected Actions actions;
-    protected WebDriverWait wait10sec;
+    protected WebDriverWait wait5sec;
     protected static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
 
     public BasePage(WebDriver driver) {
@@ -34,7 +34,7 @@ public class BasePage {
         PageFactory.initElements(driver, this);
         header = new HeaderComponent(driver);
         actions = new Actions(driver);
-        wait10sec = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait5sec = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     // -= LOCATORS =-
