@@ -27,7 +27,7 @@ public class WomenSkirtsSkortsPage extends BasePage {
     @Step("Adding items to cart until free shipping us unlocked")
     public void addItemsToUnlockFreeShipping() {
         closePopUpWindowIfExists();
-        wait5sec.until(ExpectedConditions.visibilityOfAllElements(productTiles));
+        wait10sec.until(ExpectedConditions.visibilityOfAllElements(productTiles));
         closePopUpWindowIfExists();
         int productTilesCount = productTiles.size();
         double totalSum = 0;
@@ -35,7 +35,7 @@ public class WomenSkirtsSkortsPage extends BasePage {
         // Перебираем продукты в каталоге
         for (int i = 0; i < productTilesCount; i++) {
             closePopUpWindowIfExists();
-            wait5sec.until(ExpectedConditions.visibilityOfAllElements(productTiles));
+            wait10sec.until(ExpectedConditions.visibilityOfAllElements(productTiles));
 
             closePopUpWindowIfExists();
             productTiles.get(i).click();
@@ -66,11 +66,11 @@ public class WomenSkirtsSkortsPage extends BasePage {
     @Step("Get product price from modal")
     public double getProductPriceFromModal() {
         closePopUpWindowIfExists();
-        wait5sec.until(ExpectedConditions.visibilityOfElementLocated(
+        wait10sec.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("div.modal-dialog")
         ));
         closePopUpWindowIfExists();
-        wait5sec.until(ExpectedConditions.visibilityOf(productSumInModal));
+        wait10sec.until(ExpectedConditions.visibilityOf(productSumInModal));
         String priceText = productSumInModal.getText()
                 .replace("$", "")
                 .replace(",", "")
@@ -82,7 +82,7 @@ public class WomenSkirtsSkortsPage extends BasePage {
     public void waitForProductTiles() {
         closePopUpWindowIfExists();
         if (!productTiles.isEmpty()) {
-            wait5sec.until(ExpectedConditions.visibilityOf(productTiles.get(0)));
+            wait10sec.until(ExpectedConditions.visibilityOf(productTiles.get(0)));
         }
     }
 
@@ -90,7 +90,7 @@ public class WomenSkirtsSkortsPage extends BasePage {
     @Step("Select first available product and open product page")
     public ProductPage selectFirstAvailableProductAndOpenPage() {
         closePopUpWindowIfExists();
-        wait5sec.until(ExpectedConditions.visibilityOfAllElements(productTiles));
+        wait10sec.until(ExpectedConditions.visibilityOfAllElements(productTiles));
 
         closePopUpWindowIfExists();
         if (!productTiles.isEmpty()) {
