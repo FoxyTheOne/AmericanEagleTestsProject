@@ -9,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import ui.extension.AfterTestExtension;
 import utils.FileUtils;
 
+import java.io.ByteArrayInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -43,6 +46,11 @@ public class BaseTestSettings {
         if (driver != null) {
             driver.quit();
         }
+    }
+
+    @Step("Capture screenshot (spoiler)")
+    public void captureScreenshotSpoiler() {
+        Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
     }
 
     @Step("Get page source and write it in txt file")

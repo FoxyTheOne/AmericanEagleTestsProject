@@ -14,6 +14,7 @@ public class AfterTestExtension implements AfterTestExecutionCallback {
 
             if (testInstance instanceof BaseTestSettings) {
                 BaseTestSettings baseTest = (BaseTestSettings) testInstance;
+                baseTest.captureScreenshotSpoiler();
                 baseTest.writeHtmlInTxtFile();
             }
         }
