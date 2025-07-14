@@ -8,6 +8,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -35,7 +36,6 @@ public class BaseTestSettings {
             System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         }
         initDriver();
-        driver.manage().window().maximize();
     }
 
     @AfterEach
@@ -61,14 +61,17 @@ public class BaseTestSettings {
             options.addArguments("--no-sandbox"); // Switch off sandbox to prevent access rights issues
             options.addArguments("--disable-dev-shm-usage"); // Use /tmp instead of /dev/shm
             options.setCapability("goog:loggingPrefs", Map.of("browser", "ALL"));
+            options.addArguments("--window-size=1920,1080");
             try {
                 driver = new RemoteWebDriver(new URL(remoteUrl), options);
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+                driver.manage().window().setSize(new Dimension(1920, 1080));
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
             } catch (MalformedURLException e) {
                 throw new RuntimeException("Malformed URL for Selenium Remote WebDriver", e);
             }
         } else {
             driver = new ChromeDriver();
+            driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         }
     }
