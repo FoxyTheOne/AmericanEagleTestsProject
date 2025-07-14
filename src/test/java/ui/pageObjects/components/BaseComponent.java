@@ -14,14 +14,14 @@ import java.time.Duration;
 public class BaseComponent {
     WebDriver driver;
     protected Actions actions;
-    protected WebDriverWait wait5sec;
+    protected WebDriverWait wait10sec;
     protected static final Logger LOGGER = LoggerFactory.getLogger(BaseComponent.class);
 
     public BaseComponent(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         actions = new Actions(driver);
-        wait5sec = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait10sec = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     // -= LOCATORS =-
