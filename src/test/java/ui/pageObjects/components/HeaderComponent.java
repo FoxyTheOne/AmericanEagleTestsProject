@@ -108,8 +108,11 @@ public class HeaderComponent extends BaseComponent {
         closePopUpWindowIfExists();
         actions
                 .scrollToElement(womenMenuElement)
+                .pause(500) // Короткая пауза
                 .perform();
+        closePopUpWindowIfExists();
         actions.moveToElement(womenMenuElement).perform();
+        closePopUpWindowIfExists();
         wait5sec.until(ExpectedConditions.visibilityOf(skirtsLinkElement));
     }
 
