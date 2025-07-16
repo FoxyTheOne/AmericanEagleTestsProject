@@ -1,7 +1,5 @@
 package api.models;
 
-import api.models.cartModels.InventoryCheckResponse;
-import api.models.cartModels.ProductSizesResponse;
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 

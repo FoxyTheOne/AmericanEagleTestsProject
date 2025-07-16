@@ -2,6 +2,8 @@ package api.tests.cart;
 
 import api.extensions.GuestTokenExtension;
 import constants.ApiConstants;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
@@ -10,6 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import static constants.CommonConstants.*;
 
+@Epic(value = API_TAG)
+@Feature(value = "Smoke cart tests")
 @Tags({@Tag(API_TAG), @Tag(SMOKE_TAG)})
 @ExtendWith(GuestTokenExtension.class)
 class CartApiSmokeTests extends BaseCartApiTests {

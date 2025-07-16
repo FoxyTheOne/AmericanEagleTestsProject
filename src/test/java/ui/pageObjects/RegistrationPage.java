@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import ui.models.AccountDetails;
+import utils.TestDataGeneratorUtils;
 
 public class RegistrationPage extends BasePage {
     public RegistrationPage(WebDriver driver) {
@@ -46,15 +48,26 @@ public class RegistrationPage extends BasePage {
     private WebElement createAccountButton;
 
     // -= ACTIONS =-
+    @Step("Generate account details")
+    public AccountDetails generateAccountDetails() {
+        return AccountDetails.builder()
+                .email(TestDataGeneratorUtils.generateEmail())
+                .firstName(TestDataGeneratorUtils.generateFirstName())
+                .lastName(TestDataGeneratorUtils.generateLastName())
+                .password(TestDataGeneratorUtils.generatePassword())
+                .zipCode("64648")
+                .build();
+    }
+
     @Step("Register a new user")
-    public void registerUser(String email, String firstName, String lastName, String password, String zipCode) {
+    public void registerUser(AccountDetails accountDetails) {
         closePopUpWindowIfExists();
-        wait5sec.until(ExpectedConditions.visibilityOf(emailInputElement)).sendKeys(email);
-        firstNameInputElement.sendKeys(firstName);
-        lastNameInputElement.sendKeys(lastName);
-        passwordInputElement.sendKeys(password);
-        confirmPasswordInputElement.sendKeys(password);
-        zipCodeInputElement.sendKeys(zipCode);
+        wait5sec.until(ExpectedConditions.visibilityOf(emailInputElement)).sendKeys(accountDetails.getEmail());
+        firstNameInputElement.sendKeys(accountDetails.getFirstName());
+        lastNameInputElement.sendKeys(accountDetails.getLastName());
+        passwordInputElement.sendKeys(accountDetails.getPassword());
+        confirmPasswordInputElement.sendKeys(accountDetails.getPassword());
+        zipCodeInputElement.sendKeys(accountDetails.getZipCode());
 
         new Select(monthSelectElement).selectByValue("1");
         new Select(daySelectElement).selectByValue("1");

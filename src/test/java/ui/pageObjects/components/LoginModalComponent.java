@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static io.qameta.allure.Allure.getLifecycle;
+
 public class LoginModalComponent extends BaseComponent {
     public LoginModalComponent(WebDriver driver) {
         super(driver);
@@ -32,7 +34,7 @@ public class LoginModalComponent extends BaseComponent {
     private WebElement sidetrayTitleElement;
 
     // -= ACTIONS =-
-    @Step("Log in")
+    // Не помечаем @Step, чтобы параметры теста не отображались в Allure отчете
     public void login(String email, char[] passwordArray) {
         closePopUpWindowIfExists();
         wait5sec.until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(email);

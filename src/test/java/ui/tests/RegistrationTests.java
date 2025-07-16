@@ -1,15 +1,19 @@
 package ui.tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.*;
+import ui.models.AccountDetails;
 import ui.pageObjects.CartPage;
 import ui.pageObjects.HomePage;
 import ui.pageObjects.RegistrationPage;
 import utils.FileUtils;
-import utils.TestDataGeneratorUtils;
 
 import static constants.CommonConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Epic(value = UI_TAG)
+@Feature(value = "Auth tests")
 @Tags({@Tag(UI_TAG), @Tag(EXTENDED_TAG)})
 class RegistrationTests extends BaseTestSettings {
     HomePage homePage;
@@ -27,17 +31,11 @@ class RegistrationTests extends BaseTestSettings {
     void testNewAccountCartIsEmpty() {
         homePage.header().clickAccountButton();
         RegistrationPage registrationPage = homePage.header().openRegistrationPage();
-
-        // Генерация тестовых данных
-        String email = TestDataGeneratorUtils.generateEmail();
-        String firstName = TestDataGeneratorUtils.generateFirstName();
-        String lastName = TestDataGeneratorUtils.generateLastName();
-        String password = TestDataGeneratorUtils.generatePassword();
-        String zipCode = "64648";
+        AccountDetails accountDetails = registrationPage.generateAccountDetails();
 
         // Из-за защиты Akamai сайт не позволяет зарегистрироваться через тест
-        registrationPage.registerUser(email, firstName, lastName, password, zipCode);
-        FileUtils.writeHtmlInTxtFile(email + "/" + firstName + "/" + lastName + "/" + password + "/" + zipCode, "src/test/resources/registration.txt");
+        registrationPage.registerUser(accountDetails);
+        FileUtils.writeHtmlInTxtFile(accountDetails.getEmail() + "/" + accountDetails.getFirstName() + "/" + accountDetails.getLastName() + "/" + accountDetails.getPassword() + "/" + accountDetails.getZipCode(), "src/test/resources/registration.txt");
 
         CartPage cartPage = registrationPage.header().openCartPage();
 
