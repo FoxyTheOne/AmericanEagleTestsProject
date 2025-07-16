@@ -1,5 +1,7 @@
 package ui.tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.*;
 import ui.pageObjects.CartPage;
 import ui.pageObjects.HomePage;
@@ -13,6 +15,7 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Epic(value = UI_TAG)
 @Tags({@Tag(UI_TAG), @Tag(EXTENDED_TAG)})
 class CartGuestTests extends BaseTestSettings {
     HomePage homePage;
@@ -30,6 +33,7 @@ class CartGuestTests extends BaseTestSettings {
         super.tearDown();
     }
 
+    @Feature(value = "Add, edit, delete items in cart")
     @Test
     @Tag(PO_CRUCIAL_TAG)
     @DisplayName("Add item to cart")
@@ -50,6 +54,7 @@ class CartGuestTests extends BaseTestSettings {
                 greaterThan(0));
     }
 
+    @Feature(value = "Add, edit, delete items in cart")
     @Test
     @Tag(PO_CRUCIAL_TAG)
     @DisplayName("Change item quantity")
@@ -71,6 +76,7 @@ class CartGuestTests extends BaseTestSettings {
         assertThat(cartItemCountBeforeEdit, lessThan(cartItemCountAfterEdit));
     }
 
+    @Feature(value = "Add, edit, delete items in cart")
     @Test
     @Tag(PO_CRUCIAL_TAG)
     @DisplayName("Remove item from cart")
@@ -95,6 +101,7 @@ class CartGuestTests extends BaseTestSettings {
                 lessThan(cartItemCountBeforeEdit));
     }
 
+    @Feature(value = "Check the price of product in catalog and in bag")
     @Test
     @Tag(PO_CRUCIAL_TAG)
     @DisplayName("Verify price in cart")
@@ -123,6 +130,7 @@ class CartGuestTests extends BaseTestSettings {
         );
     }
 
+    @Feature(value = "Check shipping price")
     @Test
     @Tag(PO_CRUCIAL_TAG)
     @DisplayName("Unlock free shipping")

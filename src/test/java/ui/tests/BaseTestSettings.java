@@ -69,7 +69,8 @@ public class BaseTestSettings {
             options.addArguments("--no-sandbox"); // Switch off sandbox to prevent access rights issues
             options.addArguments("--disable-dev-shm-usage"); // Use /tmp instead of /dev/shm
             options.setCapability("goog:loggingPrefs", Map.of("browser", "ALL"));
-            options.addArguments("--window-size=1920,1080");
+//            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--start-maximized");
             try {
                 driver = new RemoteWebDriver(new URL(remoteUrl), options);
                 driver.manage().window().setSize(new Dimension(1920, 1080));

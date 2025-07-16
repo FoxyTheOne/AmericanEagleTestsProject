@@ -24,7 +24,9 @@ public class CartPage extends BasePage {
     @FindBy(css = "div[data-testid='row-merchandise-value']")
     private WebElement merchandiseTotal;
 
-    @FindBy(xpath = "//div[@class='_message-container_4drgt5']/span")
+//    @FindBy(xpath = "//div[@class='_message-container_4drgt5']/span")
+//    @FindBy(xpath = "//span[@class='_message_4drgt5']")
+    @FindBy(css = "span[data-test-shipping-message]")
     private WebElement freeShippingMessage;
 
     @FindBy(css = "button[data-test-btn='editCommerceItem']")

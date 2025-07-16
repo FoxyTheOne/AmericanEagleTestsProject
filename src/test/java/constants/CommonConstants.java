@@ -30,4 +30,5 @@ public class CommonConstants {
     public static final String UNSTABLE_TAG = "Unstable";
     public static final String DEFECT_TAG = "Defect";
     public static final String WITH_RETRY_TAG = "With_retry";
+    public static final String NO_SCREENSHOT = "No_screenshot";
 }

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import ui.tests.BaseTestSettings;
 
+import static constants.CommonConstants.NO_SCREENSHOT;
+
 public class AfterTestExtension implements AfterTestExecutionCallback {
     @Override
     public void afterTestExecution(ExtensionContext context) {
@@ -14,8 +16,10 @@ public class AfterTestExtension implements AfterTestExecutionCallback {
 
             if (testInstance instanceof BaseTestSettings) {
                 BaseTestSettings baseTest = (BaseTestSettings) testInstance;
-                baseTest.captureScreenshotSpoiler();
                 baseTest.writeHtmlInTxtFile();
+                if (!context.getTags().contains(NO_SCREENSHOT)) {
+                    baseTest.captureScreenshotSpoiler();
+                }
             }
         }
     }

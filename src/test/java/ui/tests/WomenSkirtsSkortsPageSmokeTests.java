@@ -1,5 +1,7 @@
 package ui.tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.*;
 import ui.pageObjects.HomePage;
 import ui.pageObjects.WomenSkirtsSkortsPage;
@@ -9,6 +11,8 @@ import static constants.CommonConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static ui.pageObjects.BasePage.*;
 
+@Epic(value = UI_TAG)
+@Feature(value = "Smoke women skirts&skorts tests")
 @Tags({@Tag(UI_TAG), @Tag(SMOKE_TAG)})
 class WomenSkirtsSkortsPageSmokeTests extends BaseTestSettings {
     HomePage homePage;

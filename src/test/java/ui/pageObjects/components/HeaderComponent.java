@@ -31,7 +31,8 @@ public class HeaderComponent extends BaseComponent {
     @FindBy(xpath = "//a[text()='Women']")
     private WebElement womenMenuElement;
 
-    @FindBy(xpath = "//a[contains(@class, '_column-link_') and contains(@href, 'skirts-skorts')]")
+//    @FindBy(xpath = "//a[contains(@class, '_column-link_') and contains(@href, 'skirts-skorts')]")
+    @FindBy(xpath = "//a[contains(@href, 'skirts-skorts')]")
     private WebElement skirtsLinkElement;
 
     @FindBy(css = "button[data-test-btn='search-cta']")
