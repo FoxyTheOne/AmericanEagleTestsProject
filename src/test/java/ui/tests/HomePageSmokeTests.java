@@ -37,8 +37,8 @@ class HomePageSmokeTests extends BaseTestSettings {
                 () -> assertTrue(actualGeneralWebTitle.contains(GENERAL_WEB_TITLE_CONTAINS_EXPECTED)),
                 () -> assertEquals(BASE_URL + HOME_URL, actualCurrentUrl),
                 () -> assertEquals(HeaderComponent.AE_LOGO_IN_BRAND_SELECTOR_TEXT, actualAeLogoInBrandSelectorText),
-                () -> assertTrue(actualAeLogoInBrandSelectorHref.contains(HOME_URL)),
-                () -> assertTrue(actualAeLogoInBrandSelectorTitle.contains(HeaderComponent.AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED))
+                () -> assertTrue(actualAeLogoInBrandSelectorHref.contains(HOME_URL), "actualAeLogoInBrandSelectorHref = " + actualAeLogoInBrandSelectorHref + " and doesn't contain " + HOME_URL),
+                () -> assertTrue(actualAeLogoInBrandSelectorTitle.contains(HeaderComponent.AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED), "actualAeLogoInBrandSelectorTitle = " + actualAeLogoInBrandSelectorTitle + " and doesn't contain " + HeaderComponent.AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED)
         );
     }
 

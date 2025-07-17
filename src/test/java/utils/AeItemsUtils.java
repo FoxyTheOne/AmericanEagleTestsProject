@@ -2,10 +2,15 @@ package utils;
 
 import api.models.cartModels.CartResponse;
 import io.qameta.allure.Step;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ui.tests.BaseTestSettings;
 
 import java.util.List;
 
 public class AeItemsUtils {
+    protected static final Logger LOGGER = LoggerFactory.getLogger(BaseTestSettings.class);
+
     @Step("Get item id by sku id")
     public static String getItemIdBySkuId(List<CartResponse.Item> items, String skuId) {
         String itemId = "";
@@ -42,11 +47,11 @@ public class AeItemsUtils {
     @Step("Calculating items in bag quantity")
     public static int getAllItemsInBagQuantity(List<CartResponse.Item> items) {
         int itemsInBagQuantity = 0;
-        System.out.println("itemsInBagQuantity = " + itemsInBagQuantity);
+        LOGGER.debug("itemsInBagQuantity = {}", itemsInBagQuantity);
         for (CartResponse.Item item : items) {
             int itemQuantity = item.getQuantity();
             itemsInBagQuantity = itemsInBagQuantity + itemQuantity;
-            System.out.println("itemsInBagQuantity = " + itemsInBagQuantity);
+            LOGGER.debug("itemsInBagQuantity = {}", itemsInBagQuantity);
         }
         return itemsInBagQuantity;
     }

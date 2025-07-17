@@ -21,14 +21,11 @@ import static io.restassured.http.ContentType.JSON;
  * Просто вызывает TokenManager.getToken() — и получает нужный токен Роль уже была установлена расширением → нет дублирования
  */
 public class CartController implements ICartController {
-    //    RequestSpecification requestSpecification;
+    ITestPropertiesConfig configProperties = ConfigFactory.create(ITestPropertiesConfig.class, System.getProperties());
+    RequestSpecification requestSpecification = given();
     private static final String ITEMS_ENDPOINT = "/ugp-api/bag/v1/items";
     private static final String PRODUCT_SIZES_ENDPOINT = "/ugp-api/catalog/v1/product/sizes";
     private static final String BAG_ENDPOINT = "/ugp-api/bag/v1";
-
-    ITestPropertiesConfig configProperties = ConfigFactory.create(ITestPropertiesConfig.class, System.getProperties());
-
-    RequestSpecification requestSpecification = given();
 
     // При инициализации контроллера устанавливаем нужный нам token
     public CartController() {
