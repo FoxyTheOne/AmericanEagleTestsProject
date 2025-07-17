@@ -16,9 +16,8 @@ import static io.restassured.http.ContentType.URLENC;
  * Передаем авторизационный хедер из свойств, если нужно можно сделать секретными данными, для Guest - общедоступная информация.
  */
 public class TokenClientController {
-    private static final String TOKEN_ENDPOINT = "/ugp-api/auth/oauth/v4/token";
-
     static ITestPropertiesConfig configProperties = ConfigFactory.create(ITestPropertiesConfig.class, System.getProperties());
+    private static final String TOKEN_ENDPOINT = "/ugp-api/auth/oauth/v4/token";
 
     public static RequestSpecification guestAuthSpec() {
         return given()
@@ -32,7 +31,7 @@ public class TokenClientController {
                 .filter(new AllureRestAssured());
     }
 
-    // TODO В связи с защитой Akamai метод не работает и не используется в данном проекте
+    // В связи с защитой Akamai метод НЕ работает и не используется в данном проекте
     public static RequestSpecification authAuthSpec() {
         return given()
                 .baseUri(configProperties.getApiBaseUrl())
@@ -71,7 +70,7 @@ public class TokenClientController {
         return response.jsonPath().getString("access_token");
     }
 
-    // TODO В связи с защитой Akamai метод не работает и не используется в данном проекте
+    // В связи с защитой Akamai метод НЕ работает и не используется в данном проекте
     @Step("Get auth token")
     public static String getAuthToken() {
         String email = configProperties.getAuthEmail();

@@ -13,8 +13,8 @@ import ui.pageObjects.WomenSkirtsSkortsPage;
 import java.util.Objects;
 
 public class HeaderComponent extends BaseComponent {
-    public static final String AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED = "American Eagle Outfitters";
-    public static final String AE_LOGO_IN_BRAND_SELECTOR_TEXT = "Go to aeo homepage";
+    public static final String AE_LOGO_IN_BRAND_SELECTOR_TITLE_CONTAINS_EXPECTED = "Shop AE";
+    public static final String AE_LOGO_IN_BRAND_SELECTOR_TEXT = "Go to Shop AE homepage.";
     public static final String SKIRTS_LINK_TEXT_CONTENT = "Skirts & Skorts";
 
     LoginModalComponent loginModalComponent;
@@ -25,7 +25,7 @@ public class HeaderComponent extends BaseComponent {
     }
 
     // -= LOCATORS =-
-    @FindBy(css = "a[data-testid='aeo-logo']")
+    @FindBy(css = "a[data-testid='ae-logo']")
     private WebElement AeLogoInBrandSelector;
 
     @FindBy(xpath = "//a[text()='Women']")

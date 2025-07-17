@@ -1,6 +1,5 @@
 package ui.pageObjects.components;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +28,6 @@ public class BaseComponent {
     private WebElement contentShadow;
 
     // -= ACTIONS =-
-    @Step("Find and close shadow window")
     public void closePopUpWindowIfExists() {
         try {
             SearchContext shadowRoot = contentShadow.getShadowRoot();
