@@ -22,13 +22,13 @@
   <a href="https://rest-assured.io/" rel="nofollow"><img width="10%" title="Rest Assured" src="images/logo/RestAssured.svg" alt="RestAssured" style="max-width: 100%;"></a>
   <a href="https://gradle.org/" rel="nofollow"><img width="10%" title="Gradle" src="images/logo/Gradle.svg" alt="Gradle"></a>
   <a href="https://junit.org/junit5/" rel="nofollow"><img width="10%" title="JUnit5" src="images/logo/JUnit5.svg" alt="JUnit5" style="max-width: 100%;"></a>
-  <a href="https://allurereport.org/" rel="nofollow"><img width="10%" title="Allure Report" src="images/logo/Allure_Report.svg" alt="Allure" style="max-width: 100%;"></a>
+  <a href="https://allurereport.org/" rel="nofollow"><img width="10%" title="Allure Report" src="images/logo/Allure_Report.jpg" alt="Allure" style="max-width: 100%;"></a>
   <a href="https://github.com/" rel="nofollow"><img width="10%" title="GitHub" src="images/logo/GitHub.svg" alt="GitHub" style="max-width: 100%;"></a>
   <a href="https://github.com/features/actions" rel="nofollow"><img width="10%" title="Github Actions" src="images/logo/Github_Actions.svg" alt="Github Actions" style="max-width: 100%;"></a>
 </p>
 
 - **Язык программирования:** Java 17
-- **UI тестирование:** Selenium WebDriver
+- **UI тестирование:** Selenium
 - **API тестирование:** RestAssured
 - **Сборка:** Gradle
 - **Тестовый фреймворк:** JUnit 5
