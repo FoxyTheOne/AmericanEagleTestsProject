@@ -16,15 +16,15 @@
 
 ## 🛠️ Технологический стек
 <p align="center">
-  <a href="https://www.jetbrains.com/idea/" rel="nofollow"><img width="9%" title="IntelliJ IDEA" src="images/logo/Intelij_IDEA.svg" alt="Intellij_IDEA" style="max-width: 100%;"></a>
-  <a href="https://www.java.com/" rel="nofollow"><img width="9%" title="Java" src="images/logo/Java.svg" alt="Java" style="max-width: 100%;"></a>
-  <a href="https://www.selenium.dev/" rel="nofollow"><img width="9%" title="Selenium" src="images/logo/Selenium.png" alt="Selenium" style="max-width: 100%;"></a>
-  <a href="https://gradle.org/" target="_blank"><img width="10%" src="https://cdn.worldvectorlogo.com/logos/gradle.svg" alt="Gradle"></a>
-  <a href="https://junit.org/junit5/" rel="nofollow"><img width="9%" title="JUnit5" src="images/logo/JUnit5.svg" alt="JUnit5" style="max-width: 100%;"></a>
-  <a href="https://projectlombok.org/" target="_blank"><img width="10%" src="https://projectlombok.org/img/lombok-256x256.png" alt="Lombok"></a>
-  <a href="https://allurereport.org/" rel="nofollow"><img width="9%" title="Allure Report" src="images/logo/Allure_Report.svg" alt="Allure_Report" style="max-width: 100%;"></a>
-  <a href="https://github.com/"><img width="9%" title="GitHub" src="images/logo/GitHub.svg" alt="GitHub" style="max-width: 100%;"></a>
-  <a href="https://github.com/features/actions" rel="nofollow"><img width="9%" title="Github Actions" src="images/logo/Github%20Actions.svg" alt="Github Actions" style="max-width: 100%;"></a>
+  <a href="https://www.jetbrains.com/idea/" rel="nofollow"><img width="10%" title="IntelliJ IDEA" src="images/logo/Intelij_IDEA.svg" alt="Intellij_IDEA" style="max-width: 100%;"></a>
+  <a href="https://www.java.com/" rel="nofollow"><img width="10%" title="Java" src="https://cdn.worldvectorlogo.com/logos/java-14.svg" alt="Java" style="max-width: 100%;"></a>
+  <a href="https://www.selenium.dev/" rel="nofollow"><img width="10%" title="Selenium" src="https://cdn.worldvectorlogo.com/logos/selenium.svg" alt="Selenium" style="max-width: 100%;"></a>
+  <a href="https://gradle.org/" rel="nofollow"><img width="10%" title="Gradle" src="https://cdn.worldvectorlogo.com/logos/gradle.svg" alt="Gradle"></a>
+  <a href="https://junit.org/junit5/" rel="nofollow"><img width="10%" title="JUnit5" src="https://junit.org/junit5/assets/img/junit5-logo.png" alt="JUnit5" style="max-width: 100%;"></a>
+  <a href="https://projectlombok.org/" rel="nofollow"><img width="10%" title="Lombok" src="https://projectlombok.org/img/lombok-256x256.png" alt="Lombok"></a>
+  <a href="https://allurereport.org/" rel="nofollow"><img width="10%" title="Allure Report" src="https://avatars.githubusercontent.com/u/5879127?s=200&v=4" alt="Allure" style="max-width: 100%;"></a>
+  <a href="https://github.com/" rel="nofollow"><img width="10%" title="GitHub" src="images/logo/GitHub.svg" alt="GitHub" style="max-width: 100%;"></a>
+  <a href="https://github.com/features/actions" rel="nofollow"><img width="10%" title="Github Actions" src="images/logo/Github%20Actions.svg" alt="Github Actions" style="max-width: 100%;"></a>
 </p>
 
 - **Язык программирования:** Java 17
