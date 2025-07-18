@@ -26,7 +26,7 @@ class WomenSkirtsSkortsPageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(PO_CRUCIAL_TAG)
-    @DisplayName("Open women skirts & skorts page from header on homepage and check url and titles")
+    @DisplayName("Smoke test: open women skirts & skorts page from header on homepage and check url and titles")
     void openWomenSkirtsSkortsPageTest() {
         homePage.header().openWomenMenu();
         WomenSkirtsSkortsPage womenSkirtsSkortsPage = homePage.header().openWomenSkirtsSkortsPage();

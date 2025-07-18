@@ -7,7 +7,6 @@ import api.models.cartModels.ProductSizesResponse;
 import constants.ApiConstants;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
@@ -24,7 +23,6 @@ import static constants.CommonConstants.*;
 @ExtendWith(GuestTokenExtension.class)
 class CartApiExtendedTests extends BaseCartApiTests {
     @Feature(value = "Add, edit, delete items in cart")
-    @Story(value = "Adding items")
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Check quantity of items in bag, add items and check that they were added")
@@ -47,7 +45,6 @@ class CartApiExtendedTests extends BaseCartApiTests {
     }
 
     @Feature(value = "Add, edit, delete items in cart")
-    @Story(value = "Editing items")
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Add items in bag, edit them and check that they were edited")
@@ -72,7 +69,6 @@ class CartApiExtendedTests extends BaseCartApiTests {
     }
 
     @Feature(value = "Add, edit, delete items in cart")
-    @Story(value = "Delete items")
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Add items in bag, delete them and check that they were deleted")
@@ -92,7 +88,6 @@ class CartApiExtendedTests extends BaseCartApiTests {
     }
 
     @Feature(value = "Check the price of product in catalog and in bag")
-    @Story(value = "Add item and check the price")
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("Clear the bag, get product details by product id, add an item in cart and check that the prices in cart and in product details are equal")
@@ -117,7 +112,6 @@ class CartApiExtendedTests extends BaseCartApiTests {
     }
 
     @Feature(value = "Check shipping price")
-    @Story(value = "Add items to unlock free shipping")
     @Test
     @Tags({@Tag(POSITIVE_TAG), @Tag(PO_CRUCIAL_TAG)})
     @DisplayName("open product details, add items in cart until free shipping is unlocked")

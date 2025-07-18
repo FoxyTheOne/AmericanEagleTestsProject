@@ -25,7 +25,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(PO_CRUCIAL_TAG)
-    @DisplayName("Open homepage and check url and titles")
+    @DisplayName("Smoke test: open homepage and check url and titles")
     void openHomePageTest() {
         String actualGeneralWebTitle = homePage.getGeneralWebTitle();
         String actualCurrentUrl = homePage.getCurrentUrl();
@@ -44,7 +44,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P2_NICE_TO_HAVE_TAG)
-    @DisplayName("Check if svg logo is displayed on homepage")
+    @DisplayName("Smoke test: check if svg logo is displayed on homepage")
     void isSvgLogoDisplayed() {
         Boolean isAeLogoInBrandSelectorSvgDisplayed = homePage.header().isAeLogoInBrandSelectorSvgDisplayed();
 
@@ -53,7 +53,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(PO_CRUCIAL_TAG)
-    @DisplayName("Open menu on homepage")
+    @DisplayName("Smoke test: open menu on homepage")
     void openWomenMenu() {
         // Один локатор - один тест. Проверим на всякий случай отдельно
         homePage.header().openWomenMenu();
@@ -61,7 +61,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(PO_CRUCIAL_TAG)
-    @DisplayName("Open menu and find skirts catalog link on homepage")
+    @DisplayName("Smoke test: open menu and find skirts catalog link on homepage")
     void openMenuAndFindSkirtsLink() {
         homePage.header().openWomenMenu();
 
@@ -76,7 +76,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P2_NICE_TO_HAVE_TAG)
-    @DisplayName("Check search button on homepage")
+    @DisplayName("Smoke test: check search button on homepage")
     void checkSearchButton() {
         Boolean isSearchButtonSvgDisplayed = homePage.header().isSearchButtonSvgDisplayed();
 
@@ -85,7 +85,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P2_NICE_TO_HAVE_TAG)
-    @DisplayName("Click search button and check search input is displayed on homepage")
+    @DisplayName("Smoke test: click search button and check search input is displayed on homepage")
     void checkSearchButtonClick() {
         homePage.header().clickSearchButton();
         Boolean isSearchInputDisplayed = homePage.header().isSearchInputDisplayed();
@@ -95,7 +95,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P1_IMPORTANT_TAG)
-    @DisplayName("Check account button on homepage")
+    @DisplayName("Smoke test: check account button on homepage")
     void checkAccountButton() {
         Boolean isAccountIconDisplayed = homePage.header().isAccountIconDisplayed();
 
@@ -104,7 +104,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P1_IMPORTANT_TAG)
-    @DisplayName("Check sign in button on homepage")
+    @DisplayName("Smoke test: check sign in button on homepage")
     void checkSignInButton() {
         homePage.header().clickAccountButton();
 
@@ -115,7 +115,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P1_IMPORTANT_TAG)
-    @DisplayName("Check create account button on homepage")
+    @DisplayName("Smoke test: check create account button on homepage")
     void checkCreateAccountButton() {
         homePage.header().clickAccountButton();
 
@@ -124,7 +124,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P1_IMPORTANT_TAG)
-    @DisplayName("Check favorites button link on homepage")
+    @DisplayName("Smoke test: check favorites button link on homepage")
     void checkFavoritesLink() {
         String actualFavoritesHref = homePage.header().getTheFavoritesLink();
 
@@ -133,7 +133,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P2_NICE_TO_HAVE_TAG)
-    @DisplayName("Check favorites button svg on homepage")
+    @DisplayName("Smoke test: check favorites button svg on homepage")
     void checkFavoritesSvg() {
         Boolean isTheFavoritesSvgDisplayed = homePage.header().isTheFavoritesSvgDisplayed();
 
@@ -143,7 +143,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(PO_CRUCIAL_TAG)
-    @DisplayName("Check cart button link on homepage")
+    @DisplayName("Smoke test: check cart button link on homepage")
     void checkCartLink() {
         String actualCartHref = homePage.header().getTheCartLink();
 
@@ -152,7 +152,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P2_NICE_TO_HAVE_TAG)
-    @DisplayName("Check cart button svg on homepage")
+    @DisplayName("Smoke test: check cart button svg on homepage")
     void checkCartSvg() {
         Boolean isTheCartSvgDisplayed = homePage.header().isTheCartSvgDisplayed();
 
@@ -161,7 +161,7 @@ class HomePageSmokeTests extends BaseTestSettings {
 
     @Test
     @Tag(P2_NICE_TO_HAVE_TAG)
-    @DisplayName("Check cart button number indicator on homepage")
+    @DisplayName("Smoke test: check cart button number indicator on homepage")
     void checkCartIndicator() {
         Boolean isTheCartIndicationDisplayed = homePage.header().isTheCartIndicationDisplayed();
 
