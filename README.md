@@ -29,7 +29,7 @@
 
 - **Язык программирования:** Java 17
 - **UI тестирование:** Selenium
-- **API тестирование:** RestAssured
+- **API тестирование:** REST assured
 - **Сборка:** Gradle
 - **Тестовый фреймворк:** JUnit 5
 - **Шаблон проектирования:** Page Object Model (POM)
