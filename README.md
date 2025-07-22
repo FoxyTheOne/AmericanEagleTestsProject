@@ -4,10 +4,14 @@
 [![Gradle](https://img.shields.io/badge/Gradle-8.1-%2302303A?logo=gradle)](https://gradle.org/)
 [![Allure](https://img.shields.io/badge/Allure-Report-%23FF6A00?logo=allure)](https://allurereport.org/)
 
-Это репозиторий для дипломного проекта по автоматизации тестовых сценариев для сайта [American Eagle](https://www.ae.com/us/en) с использованием UI и API тестов.
+Это репозиторий для дипломного проекта по автоматизации тестовых сценариев для сайта [American Eagle](https://www.ae.com/us/en) с использованием UI и API тестов.  
+
+American Eagle — американская розничная компания по продаже одежды и аксессуаров, со штаб-квартирой в Питтсбурге, штат Пенсильвания.  
+American Eagle Outfitters также является материнской компанией Aerie. По состоянию на январь 2021 года работает 901 магазин American Eagle Stores, 175 магазинов Aerie и 2 магазина Todd Snyder в США, Канаде, Мексике и Гонконге. Среди популярных продуктов бренда — джинсы, рубашки поло, футболки, верхняя одежда и купальники.
 
 ## Содержание
 - [🛠️ Технологический стек](#-технологический-стек)
+- [📈 Тест план](#-тест-план)
 - [🚀 Запуск тестов](#-запуск-тестов)
 - [⚙️ Запуск в Github Actions](#-запуск-в-github-actions)
 - [📊 Allure отчет в Github Actions](#-allure-отчет-в-github-actions)
@@ -40,35 +44,59 @@
 **Содержание Allure отчёта:**
 - Шаги тестов
 - Автоматические скриншоты для упавших UI-тестов (кроме тестов с секретными данными)
-- Page Source для упавших UI-тестов
+- Page Source для упавших UI-тестов  
+
+<p align="center"> <img src="images/failed_test_screenshot.JPG" alt="Failed test: screenshot" width="700"/> </p>
+<p align="center"> <img src="images/failed_test_html.JPG" alt="Failed test: html" width="700"/> </p>
+
+---
+
+## 📈 Тест план
+
+<p align="center"> <img src="images/AE_test_plan.pdf" alt="Test plan" width="700"/> </p>
 
 ---
 
 ## 🚀 Запуск тестов
 
-Для запуска тестов с авторизацией заполните поля email и password в файле default.properties.
+Для локального запуска тестов с авторизацией заполните поля email и password в файле default.properties.
+
+⛔️ Мы тестируем реальный сайт работающего магазина, поэтому некоторые тесты блокируются защитой от ботов (Akamai): не работают тесты, которые связаны с авторизацией и регистрацией на сайте.
+В связи с этим в данном проекте эти тесты отмечены тегом "Defect" и для их локального запуска используется отдельная команда. 
 
 ### Команды для запуска:
 
 Все тесты (кроме дефектных):
-`gradle allExceptDefect`
+   ```bash
+      gradle allExceptDefect
+   ```
 
 Только smoke-тесты (кроме дефектных):
-`gradle smoke`
+   ```bash
+      gradle smoke
+   ```
 
 Только API-тесты (кроме дефектных):
-`gradle apiTests`
+   ```bash
+      gradle apiTests
+   ```
 
 Только UI-тесты (кроме дефектных):
-`gradle uiTests`
+   ```bash
+      gradle uiTests
+   ```
 
 Только defect-тесты:
-`gradle defect`
+   ```bash
+      gradle defect
+   ```
 
 Полный прогон всех тестов:
-`gradle test`
+   ```bash
+      gradle test
+   ```
 
-Для удаленного запуска в GitHub Actions:
+Для удаленного запуска в GitHub Actions используется команда:
 `./gradlew allExceptDefectRemote -Denv=default`
 
 ---
@@ -77,13 +105,13 @@
 1. Перейдите в репозиторий `AmericanEagleTestsProject`  
 
 2. Откройте вкладку `Actions`  
-![Press to Actions tab](images/01_press_to_actions_tab.png)
+<p align="center"> <img src="images/01_press_to_actions_tab.png" alt="Press to Actions tab" width="700"/> </p>
 
 3. Выберите workflow `AE Tests`  
-![Press AE tests workflow](images/02_press_ae_tests_workflow.png)
+<p align="center"> <img src="images/02_press_ae_tests_workflow.png" alt="Press AE tests workflow" width="700"/> </p>
 
 4. Нажмите `Run workflow`  
-![Press run workflow](images/03_press_run_workflow.png)
+<p align="center"> <img src="images/03_press_run_workflow.png" alt="Press run workflow" width="700"/> </p>
 
 5. Дождитесь завершения выполнения
 
@@ -91,15 +119,15 @@
 
 ## 📊 Allure отчет в Github Actions
 1. После завершения сборки перейдите в `Actions` снова  
-![Press to Actions tab](images/04_press_to_actions_tab.png)
+<p align="center"> <img src="images/04_press_to_actions_tab.png" alt="Press to Actions tab" width="700"/> </p>
 
 2. Нажмите на `pages and deployment`  
-![Click on the Pages and deployment](images/05_click_on_the_pages_and_deployment.png)
+<p align="center"> <img src="images/05_click_on_the_pages_and_deployment.png" alt="Click on the Pages and deployment" width="700"/> </p>
 
 3. Перейдите по ссылке в отчет  
-![Click on the link](images/06_click_on_the_link.png)
+<p align="center"> <img src="images/06_click_on_the_link.png" alt="Click on the link" width="700"/> </p>
 
 4. Просмотрите отчет  
-![Allure report](images/07_allure_report.png)  
+<p align="center"> <img src="images/07_allure_report.png" alt="Allure report" width="700"/> </p>
 
-![Allure report](images/08_allure_report.png)
+<p align="center"> <img src="images/08_allure_report.png" alt="Allure report" width="700"/> </p>

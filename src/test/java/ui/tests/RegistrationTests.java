@@ -11,6 +11,7 @@ import utils.FileUtils;
 
 import static constants.CommonConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Epic(value = UI_TAG)
 @Feature(value = "Auth tests")
@@ -40,5 +41,11 @@ class RegistrationTests extends BaseTestSettings {
         CartPage cartPage = registrationPage.header().openCartPage();
 
         assertEquals(0, cartPage.getCartItemCount(), "New account cart should be empty");
+
+        // Проверка входа в аккаунт
+        homePage.header().clickAccountButton();
+        String sidetrayTitle = homePage.header().loginModalComponent().getSidetrayTitle();
+
+        assertNotEquals("Account", sidetrayTitle, "You're not logged in");
     }
 }
